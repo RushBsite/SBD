@@ -27,7 +27,8 @@
 ### **repo 구성**
 |폴더|설명|
 |-|-|
-`front`|  React 작업물
+`front`|  React F.E test 작업물
+`nanum-baedal`| 본 프로젝트 폴더
 `NodeJS`|  B.E 작업물
 `src`|  기타 필요 외부 소스 저장 _(ex)img)_
 
