@@ -1,0 +1,36 @@
+{
+  "name": "sbd",
+  "version": "1.0.0",
+  "description": "<div class=\"stack\">\r <a href=\"#\"><img src=\"https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/NodeJS-339933?style=for-the-badge&logo=Node.js&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/k8s-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/mariadb-003545?style=for-the-badge&logo=mariadb&logoColor=white\"></a>\r </div>",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RushBsite/SBD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RushBsite/SBD/issues"
+  },
+  "homepage": "https://github.com/RushBsite/SBD#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "jquery": "^3.6.1",
+    "jsdom": "^20.0.2",
+    "mocha-jsdom": "^2.0.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "request-ip": "^3.3.0"
+  }
+}
