@@ -13,7 +13,7 @@ const server = http.createServer(app)
 
 var bodyParser = require('body-parser')
 //router는 추후 추가 예정
-var router = require('./router/index')
+var router = require('./NodeJS/index')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')

@@ -9,7 +9,7 @@ router.get('/', function(req, res){
     var ip = requestIp.getClientIp(req);
     var id = req.user;
     if(!id){
-        res.sendFile(path.join(__dirname, "../../public/main.html"))
+        res.sendFile(path.join(__dirname, "./main.html"))
     }
     if(id){
         var nickname = req.user.nickname;
