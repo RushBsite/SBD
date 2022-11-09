@@ -9,11 +9,13 @@ router.get('/', function(req, res){
     var ip = requestIp.getClientIp(req);
     var id = req.user;
     if(!id){
-        res.sendFile(path.join(__dirname, "./main.html"))
+        res.sendFile(path.join(__dirname, "../../public/main.html"))
     }
     if(id){
-        var nickname = req.user.nickname;
-        res.render('main.ejs', {'ID': id, 'nickname': nickname});
+        var uid = req.user.id;
+        var address = req.user.userAddress
+        var orderlist = req.user.orderlist
+        res.render('main.ejs', {UID : uid, one : "this is one", address : address, orderlist : orderlist});
     }
 });
 

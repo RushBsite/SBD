@@ -9,11 +9,11 @@ var requestIp = require('request-ip');
 
 // database setting
 var connection = mysql.createConnection({
-    host: 'localhost',
-    port : 3306,
-    user: 'root',
-    password : '',
-    database : 'singer_composer'
+    host:'52.95.252.83',
+    user:'k8steam5',
+    password:'k8steam5passwd',
+    database:'team5',
+    port:'30000'
 })
 connection.connect();
 
@@ -26,25 +26,25 @@ router.get('/', function(req, res){
 })
 
 passport.serializeUser(function(user, done){
+    console.log('serialize', user);
     done(null, user)
 });
 passport.deserializeUser(function(user, done){
     var ID = user.ID;
-    var nickname = user.nickname;
-    var type = user.type;
+    var userAddress = user.userAddress;
+    var orderlist = user.orderlist;
     // console.log('passport session get ID: '+ ID + '(' + nickname + ')')
-    done(null, {'ID': ID, 'nickname':nickname, 'type':type}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
+    done(null, {'ID': ID, 'userAddress':userAddress, 'orderlist':orderlist}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
 })
 
 passport.use('local-join', new LocalStrategy({
         usernameField: 'ID',
         passwordField: 'password',
         pwcomField: 'pw_com',
-        usertypeField: 'type',
-        nicknameField: 'nickname',
+        userAddressField: 'userAddress',
         passReqToCallback: true
      }, function(req, ID, password, done){
-            var query = connection.query('select * from userDB where ID=?', [ID], function(err, rows){
+            var query = connection.query('select * from user where id=?', [ID], function(err, rows){
                 var ip = requestIp.getClientIp(req);
                 if(err) return done(err);
 
@@ -56,18 +56,10 @@ passport.use('local-join', new LocalStrategy({
                     return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
                 }
                 else{
-                    var subqry = connection.query('select * from userDB where nickname=?', [req.body.nickname], function(err, rows_){
-                        if(err) return done(err);
-                        if(rows_.length){
-                            return done(null, false, {message : '중복된 닉네임입니다.'})
-                        }
-                        else{
-                            var sql = {ID: ID, password: password, type:req.body.type, nickname:req.body.nickname};
-                            var query = connection.query('insert into userDB set ?', sql, function(err, rows){
-                                if(err) throw err
-                                return done(null, {'ID' : ID, 'nickname' : req.body.nickname, 'type': req.body.type});
-                            })
-                        }
+                    var sql = {ID: ID, password: password, userAddress:req.body.userAddress};
+                    var query = connection.query('insert into user set ?', sql, function(err, rows){
+                        if(err) throw err
+                        return done(null, {'ID' : ID, 'userAddress' : req.body.userAddress});
                     })
                 }
             }

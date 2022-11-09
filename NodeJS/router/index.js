@@ -4,10 +4,10 @@ var router = express.Router();
 var path = require('path')
 var requestIp = require('request-ip');
 
-var main = require('./Main/main')
-var register = require('./Register/index_register')
-var login = require('./Login/index_login')
-var logout = require('./Logout/index_logout')
+var main = require('./main/main')
+var register = require('./register/index_register')
+var login = require('./login/index_login')
+var logout = require('./logout/index_logout')
 
 
 // URL routing
@@ -17,11 +17,15 @@ router.get('/', function(req, res){
         var ip = requestIp.getClientIp(req);
         var id = req.user;
         if(!id){
-            res.sendFile(path.join(__dirname, "./Main/main.html"))
+            res.sendFile(path.join(__dirname, "../public/main.html"))
         }
         if(id){
-            var nickname = req.user.nickname;
-            res.render('main.ejs', {'ID': id, 'nickname': nickname});
+            //var nickname = req.user.nickname;
+            //res.render('main.ejs', {'ID': id});
+            var uid = req.user.id;
+            var address = req.user.userAddress
+            var orderlist = req.user.orderlist
+            res.render('main.ejs', {UID : uid, one : "this is one", address : address, orderlist : orderlist});
         }
     }
     catch{

@@ -10,7 +10,6 @@
             </div>
         </nav>
         <div class="container px-5 my-5">
-            <h2>회원가입</h2>
             <form action="/register" method="post" id="contactForm" data-sb-form-api-token="API_TOKEN">
                 <div class="form-floating mb-3">
                     <input class="form-control" name="ID" id="ID" type="text" required minlength='1' maxlength='20' placeholder="ID" data-sb-validations="required" />
@@ -28,14 +27,13 @@
                     <div class="invalid-feedback" data-sb-feedback="passwordConfirm:required">비밀번호 확인을 해주세요.</div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="nickname" id="nickname" type="text" required minlength='1' maxlength='20' placeholder="nickname" data-sb-validations="required" />
-                    <label for="nickname">닉네임</label>
-                    <div class="invalid-feedback" data-sb-feedback="nickname:required">닉네임을 입력하세요.</div>
+                    <input class="form-control" name="userAddress" id="userAddress" type="text" required minlength='1' maxlength='20' placeholder="userAddress" data-sb-validations="required" />
+                    <label for="userAddress">주소지</label>
+                    <div class="invalid-feedback" data-sb-feedback="userAddress:required">주소지를 입력하세요.</div>
                 </div>
                 <div class="d-grid">
                     <button class="btn btn-primary btn-lg" id="submitButton" type="submit">가입하기</button>
                 </div>
-                <section class="messages" style="color:crimson;"> <%= message %> </section>
             </form>
         </div>
     </body>

@@ -10,11 +10,11 @@ var requestIp = require('request-ip');
 
 // database setting
 var connection = mysql.createConnection({
-    host: 'localhost',
-    port : 3306,
-    user: 'root',
-    password : '',
-    database : 'singer_composer'
+    host:'52.95.252.83',
+    user:'k8steam5',
+    password:'k8steam5passwd',
+    database:'team5',
+    port:'30000'
 })
 connection.connect();
 
@@ -27,15 +27,16 @@ router.get('/', function(req, res){
 })
 
 passport.serializeUser(function(user, done){
+    console.log('serialize', user);
     done(null, user)
 });
 
 passport.deserializeUser(function(user, done){
     var ID = user.ID;
-    var nickname = user.nickname;
-    var type = user.type;
+    var userAddress = user.userAddress;
+    var orderlist = user.orderlist;
     // console.log('passport session get ID: '+ ID + '(' + nickname + ')')
-    done(null, {'ID': ID, 'nickname':nickname, 'type': type}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
+    done(null, {'ID': ID, 'nickname':userAddress, 'orderlist': orderlist}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
 })
 
 passport.use('local-login', new LocalStrategy({
@@ -43,13 +44,13 @@ passport.use('local-login', new LocalStrategy({
         passwordField: 'password',
         passReqToCallback: true
      }, function(req, ID, password, done){
-            var query = connection.query('select * from userDB where ID=?', [ID], function(err, rows){
+            var query = connection.query('select * from user where ID=?', [ID], function(err, rows){
             if(err) return done(err);
             
             var ip = requestIp.getClientIp(req);
             if(rows.length){ // database에 입력한 ID값이 있는가?
                 if(password == rows[0].password){ // 비밀번호와 확인이 같은가?
-                    return done(null, {'ID' : ID, 'nickname' : rows[0].nickname, 'type': rows[0].type});
+                    return done(null, {'ID' : ID, 'userAddress' : rows[0].userAddress, 'orderlist': rows[0].orderlist});
                 }
                 else{
                     return done(null, false, {message : '잘못된 비밀번호입니다.'})

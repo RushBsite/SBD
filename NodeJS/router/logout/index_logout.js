@@ -12,10 +12,13 @@ router.get('/', function(req, res){
         res.redirect('/main')
     }
     else{
-        req.logout();
-        req.session.save(function(){
+        req.logout((err) => {
+            req.session.save();
             res.redirect('/');
-        })
+        });
+        //req.session.save(function(){
+        //    res.redirect('/');
+        //})
     }
 });
 
