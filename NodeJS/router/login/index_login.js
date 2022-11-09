@@ -34,9 +34,10 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(user, done){
     var ID = user.ID;
     var userAddress = user.userAddress;
-    var orderlist = user.orderlist;
+    var EMAIL = user.EMAIL
+    var BIRTH = req.user.BIRTH
     // console.log('passport session get ID: '+ ID + '(' + nickname + ')')
-    done(null, {'ID': ID, 'nickname':userAddress, 'orderlist': orderlist}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
+    done(null, {'ID': ID, 'userAddress':userAddress, 'EMAIL':EMAIL, 'BIRTH':BIRTH}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
 })
 
 passport.use('local-login', new LocalStrategy({
@@ -49,8 +50,8 @@ passport.use('local-login', new LocalStrategy({
             
             var ip = requestIp.getClientIp(req);
             if(rows.length){ // database에 입력한 ID값이 있는가?
-                if(password == rows[0].password){ // 비밀번호와 확인이 같은가?
-                    return done(null, {'ID' : ID, 'userAddress' : rows[0].userAddress, 'orderlist': rows[0].orderlist});
+                if(password == rows[0].PASSWORD){ // 비밀번호와 확인이 같은가?
+                    return done(null, {'ID' : ID, 'userAddress' : rows[0].userAddress, 'EMAIL': rows[0].EMAIL, 'BIRTH': rows[0].BIRTH});
                 }
                 else{
                     return done(null, false, {message : '잘못된 비밀번호입니다.'})

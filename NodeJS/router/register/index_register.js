@@ -32,9 +32,10 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(user, done){
     var ID = user.ID;
     var userAddress = user.userAddress;
-    var orderlist = user.orderlist;
+    var EMAIL = user.EMAIL
+    var BIRTH = user.BIRTH
     // console.log('passport session get ID: '+ ID + '(' + nickname + ')')
-    done(null, {'ID': ID, 'userAddress':userAddress, 'orderlist':orderlist}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
+    done(null, {'ID': ID, 'userAddress':userAddress, 'EMAIL':EMAIL, 'BIRTH':BIRTH}); // 세션에서 값을 뽑아서 페이지에 전달하는 역할
 })
 
 passport.use('local-join', new LocalStrategy({
@@ -42,6 +43,8 @@ passport.use('local-join', new LocalStrategy({
         passwordField: 'password',
         pwcomField: 'pw_com',
         userAddressField: 'userAddress',
+        EMAIL: 'EMAIL',
+        BIRTH: 'BIRTH',
         passReqToCallback: true
      }, function(req, ID, password, done){
             var query = connection.query('select * from user where id=?', [ID], function(err, rows){
@@ -56,10 +59,10 @@ passport.use('local-join', new LocalStrategy({
                     return done(null, false, {message : '비밀번호가 일치하지 않습니다.'})
                 }
                 else{
-                    var sql = {ID: ID, password: password, userAddress:req.body.userAddress};
+                    var sql = {ID: ID, password: password, userAddress:req.body.userAddress, EMAIL:req.body.EMAIL, BIRTH:req.body.BIRTH};
                     var query = connection.query('insert into user set ?', sql, function(err, rows){
                         if(err) throw err
-                        return done(null, {'ID' : ID, 'userAddress' : req.body.userAddress});
+                        return done(null, {'ID' : ID, 'userAddress' : req.body.userAddress, 'EMAIL' : req.body.EMAIL, 'BIRTH' : req.body.BIRTH});
                     })
                 }
             }

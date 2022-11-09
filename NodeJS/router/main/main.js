@@ -12,10 +12,10 @@ router.get('/', function(req, res){
         res.sendFile(path.join(__dirname, "../../public/main.html"))
     }
     if(id){
-        var uid = req.user.id;
         var address = req.user.userAddress
-        var orderlist = req.user.orderlist
-        res.render('main.ejs', {UID : uid, one : "this is one", address : address, orderlist : orderlist});
+        var EMAIL = req.user.EMAIL
+        var BIRTH = req.user.BIRTH
+        res.render('main.ejs', {address : address, EMAIL : EMAIL, BIRTH, BIRTH});
     }
 });
 
