@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=y5fpp49we3&submodules=geocoder"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ya0ject574&submodules=geocoder"></script>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <div class="top-bar" style="max-width: 1000px; padding: 20px 20px; border-bottom: 1px solid rgba(128, 128, 128, 0.25);">
+    <input id="back" type="button" value="←" style="background-color: white; border: none; color: #06f;"/>
+    <span style="text-align: center;">위치 찾기</span>
+  </div>
 </head>
 
 <body>
-<div class="search">
-	<input id="address" type="text" placeholder="검색할 주소">
-	<input id="submit" type="button" value="주소검색">
-</div>
-<div id="map" style="width:1000px;height:500px;"></div>
-<div>
-	<table>
-		<thead>
-			<tr>
-				<th>주소</th>
-				<th>위도</th>
-				<th>경도</th>
-			</tr>	
-		</thead>
-		<tbody id="mapList"></tbody>
-	</table>
-</div>
+  <div class="container" style="height: 80vh; display: flex; flex-direction: column;">
+    <div class="search" style="text-align: center; max-width: 1000px; min-width: 200px; padding: 10px 10px;">
+      <input id="address" type="text" placeholder="검색할 주소" style="width: 60%; background-color: #fcfcfc; border: 0; border-bottom: 2px solid lightgrey; padding: 10px;">
+      <input id="submit" type="button" value="🔍" style="border: none; background-color: white; font-size: large;">
+    </div>
+    <div id="map" style="max-width:1000px;height:500px; flex-grow: 4;"></div>
+    <div style="min-width: 200px; max-width:1000px; height:100px; background-color: white; text-align: center; box-shadow: 0 -7px 7px 0 rgba(0, 0, 0, 0.10); z-index: 1; border-radius: 5%;">
+      기존 위치<br/>
+      <text id="userLocation">-</text><br/>
+      현재 위치<br/>
+      <text id="mapList"></text><br/>
+      <div id="button-box">
+        <input id="accept" type="button" value="이 위치로 지정" style="margin: 20px 10px 0 10px; padding: 15px 50px 15px 50px; border-radius: 15px; background-color: #06f;font-size: medium; color: white; "/>
+      </div>
+    </div>
+  </div>
 </body>
 <script>
+
 //지도를 그려주는 함수 실행
 selectMapList();
 
@@ -61,6 +65,31 @@ function searchAddressToCoordinate(address) {
     });
 }
 
+function success({ coords, timestamp }) {
+  naver.maps.Service.reverseGeocode({
+        location: new naver.maps.LatLng(coords.latitude, coords.longitude),
+    }, function(status, response) {
+        if (status !== naver.maps.Service.Status.OK) {
+            return alert('Something wrong!');
+        }
+
+        var result = response.result, // 검색 결과의 컨테이너
+            items = result.items; // 검색 결과의 배열
+
+        // do Something
+        insertAddress(items.roadAddress, items.x, items.y);
+        alert(items.total)
+    });    
+}
+
+function getUserLocation() {
+    if (!navigator.geolocation) {
+        throw "위치 정보가 지원되지 않습니다.";
+    }
+    navigator.geolocation.getCurrentPosition(success);
+}
+getUserLocation();
+
 // 주소 검색의 이벤트
 $('#address').on('keydown', function(e) {
     var keyCode = e.which;
@@ -79,17 +108,13 @@ naver.maps.Event.once(map, 'init_stylemap', initGeocoder);
 //검색정보를 테이블로 작성해주고, 지도에 마커를 찍어준다.
 function insertAddress(address, latitude, longitude) {
 	var mapList = "";
-	mapList += "<tr>"
-	mapList += "	<td>" + address + "</td>"
-	mapList += "	<td>" + latitude + "</td>"
-	mapList += "	<td>" + longitude + "</td>"
-	mapList += "</tr>"
+	mapList += address
 
-	$('#mapList').append(mapList);	
+  $('#mapList').text(mapList);	
 
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(longitude, latitude),
-	    zoom: 14
+	    zoom: 16
 	});
     var marker = new naver.maps.Marker({
         map: map,
@@ -102,7 +127,7 @@ function selectMapList() {
 	
 	var map = new naver.maps.Map('map', {
 	    center: new naver.maps.LatLng(37.3595704, 127.105399),
-	    zoom: 10
+	    zoom: 12
 	});
 }
 
@@ -111,7 +136,7 @@ function selectMapList() {
 function moveMap(len, lat) {
 	var mapOptions = {
 		    center: new naver.maps.LatLng(len, lat),
-		    zoom: 15,
+		    zoom: 17,
 		    mapTypeControl: true
 		};
     var map = new naver.maps.Map('map', mapOptions);
@@ -120,5 +145,6 @@ function moveMap(len, lat) {
         map: map
     });
 }
+
 </script>
 </html>
