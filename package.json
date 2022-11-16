@@ -4,7 +4,13 @@
   "description": "<div class=\"stack\">\r <a href=\"#\"><img src=\"https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/NodeJS-339933?style=for-the-badge&logo=Node.js&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/k8s-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white\"></a>\r <a href=\"#\"><img src=\"https://img.shields.io/badge/mariadb-003545?style=for-the-badge&logo=mariadb&logoColor=white\"></a>\r </div>",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build && gulp licenses",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "compile-sass": "sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css",
+    "minify-sass": "sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.min.css --style compressed"
   },
   "repository": {
     "type": "git",
@@ -17,6 +23,18 @@
   },
   "homepage": "https://github.com/RushBsite/SBD#readme",
   "dependencies": {
+    "gulp": "4.0.2",
+    "gulp-append-prepend": "1.0.9",
+    "moment": "2.29.4",
+    "nouislider": "15.1.0",
+    "react": "18.2.0",
+    "react-bootstrap-switch": "15.5.3",
+    "react-datetime": "3.1.1",
+    "react-dom": "18.2.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "5.0.1",
+    "reactstrap": "8.9.0",
+    "sass": "1.54.0",
     "body-parser": "^1.20.1",
     "connect-flash": "^0.1.1",
     "ejs": "^3.1.8",
