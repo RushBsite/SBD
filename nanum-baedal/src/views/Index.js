@@ -41,8 +41,9 @@ function Index() {
     <>
       <IndexNavbar />
       <div className="wrapper">
-        <IndexHeader />
         <div className="main">
+          <Tabs />
+          <Tabs />
           <Tabs />
         </div>
         <DarkFooter />
