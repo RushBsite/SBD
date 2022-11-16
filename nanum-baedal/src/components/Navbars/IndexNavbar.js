@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -85,7 +85,7 @@ function IndexNavbar() {
             <Nav navbar>
               <NavItem>
                 <NavLink
-                  href="#pablo"
+                  href="/login-page"
                   onClick={(e) => {
                     e.preventDefault();
                     document
@@ -97,6 +97,20 @@ function IndexNavbar() {
                 </NavLink>
               </NavItem>
               <NavItem>
+
+                <Button
+                  className="now-ui-icons arrows-1_cloud-download-93"
+                  color="default"
+                  to="/login-page"
+                  outline
+                  size="lg"
+                  tag={Link}
+                >
+                  View Login Page
+                </Button>
+              </NavItem>   
+              <NavItem>    
+
                 <Button
                   className="nav-link btn-neutral"
                   color="info"

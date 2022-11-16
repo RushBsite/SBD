@@ -8,6 +8,7 @@ var main = require('./main/main')
 var register = require('./register/index_register')
 var login = require('./login/index_login')
 var logout = require('./logout/index_logout')
+var findpw = require('./findpw/index_findpw')
 
 
 // URL routing
@@ -38,4 +39,5 @@ router.use('/main', main)
 router.use('/register', register)
 router.use('/login', login)
 router.use('/logout', logout)
+router.use('/findpw', findpw)
 module.exports = router;

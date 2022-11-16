@@ -17,7 +17,7 @@
                     <div class="invalid-feedback" data-sb-feedback="id:required">아이디를 입력하세요.</div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" name="password" id="password" required minlength='1' maxlength='20' type="password" placeholder="password" data-sb-validations="required" />
+                    <input class="form-control" name="password" id="password" required minlength='1' maxlength='20' placeholder="password" data-sb-validations="required" />
                     <label for="password">비밀번호</label>
                     <div class="invalid-feedback" data-sb-feedback="password:required">비밀번호를 입력하세요.</div>
                 </div>
@@ -26,6 +26,11 @@
                 </div>
                 <section class="messages" style="color:crimson;"> <%= message %> </section>
             </form>
+            <div class="container">
+                <div class="user">
+                    <a class="btn btn-primary" href="/findpw">비밀번호 찾기</a>
+                </div>
+            </div>
         </div>
     </body>
 </html>

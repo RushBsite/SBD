@@ -69,8 +69,6 @@ db.query("select * from user", (error,result)=>{
 
 });
 
-
-
 // 서버 가동(IPv4 형식으로 express 설정)
 server.listen(PORT, '0.0.0.0', function(){
     console.log("서버가 시작되었습니다.(Port: "+PORT+")");
