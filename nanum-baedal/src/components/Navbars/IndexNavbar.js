@@ -82,37 +82,25 @@ function IndexNavbar() {
             isOpen={collapseOpen}
             navbar
           >
-            <Nav navbar>
-              <NavItem>
-                <NavLink
-                  href="/login-page"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .scrollIntoView();
-                  }}
-                >
-                  <i className="now-ui-icons arrows-1_cloud-download-93"></i>
-                  <p>로그인</p>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-
+            <Nav navbar>              
+              <NavItem>    
                 <Button
-                  className="now-ui-icons arrows-1_cloud-download-93"
+                  className="btn-round btn-white"
                   color="default"
+                  id="login_btn"
                   to="/login-page"
-                  outline
-                  size="lg"
                   tag={Link}
                 >
-                  View Login Page
+                  <i className="now-ui-icons arrows-1_share-66 mr-1"></i>
+                  <p>로그인</p>
                 </Button>
-              </NavItem>   
+                <UncontrolledTooltip target="#login_btn">
+                  로그인 하러 가기
+                </UncontrolledTooltip>
+              </NavItem>
               <NavItem>    
-
                 <Button
-                  className="nav-link btn-neutral"
+                  className="btn-neutral"
                   color="info"
                   href=""
                   id="change_adress"
@@ -124,7 +112,7 @@ function IndexNavbar() {
                 <UncontrolledTooltip target="#change_adress">
                   주소를 변경하려면 클릭
                 </UncontrolledTooltip>
-              </NavItem>             
+              </NavItem>                         
             </Nav>
           </Collapse>
         </Container>
