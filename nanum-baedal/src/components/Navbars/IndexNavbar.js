@@ -18,21 +18,9 @@ import {
 } from "reactstrap";
 
 function IndexNavbar() {
-  const [isLogin, setIsLogin] = useState(false)
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
-
-    if(sessionStorage.getItem('user_id') === null){
-    // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
-      console.log('isLogin ?? :: ', isLogin)
-    } else {
-    // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
-    // 로그인 상태 변경
-      setIsLogin(true)
-      console.log('isLogin ?? :: ', isLogin)
-    }
-    
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 49 ||
@@ -51,13 +39,6 @@ function IndexNavbar() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
-
-  const onLogout = () => {
-    // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
-      sessionStorage.removeItem('user_id')
-      // App 으로 이동(새로고침)
-      document.location.href = '/'
-  }
   return (
     <>
       {collapseOpen ? (
@@ -116,8 +97,6 @@ function IndexNavbar() {
                 <UncontrolledTooltip target="#login_btn">
                   로그인 하러 가기
                 </UncontrolledTooltip>
-
-
               </NavItem>
               <NavItem>    
                 <Button

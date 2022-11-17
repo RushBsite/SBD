@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Login from '../components/Login';
 import Main from '../components/Main';
 
@@ -8,8 +8,8 @@ import Main from '../components/Main';
 
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import IndexHeader from "components/Headers/IndexHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 // sections for this page
 import Images from "./index-sections/Images.js";
@@ -27,9 +27,6 @@ import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 
-
-import App from './App';
-
 function Index() {
   // 로그인 상태 관리
    const [isLogin, setIsLogin] = React.useState(false)
@@ -43,8 +40,10 @@ function Index() {
     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
     // 로그인 상태 변경
       setIsLogin(true)
-      console.log('isLogin ?? :::: ', isLogin)
+      console.log('isLogin ?? :: ', isLogin)
     }
+
+
     document.body.classList.add("index-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -55,32 +54,15 @@ function Index() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
-
-  const [items,setItems] = useState([1,1,1,1]);
-      
-  const fetchMoreData = (e) => {
-    //@TODO , db에서 data 가져오기
-    setItems([...items, 1]);
-  };
-
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
-        <div className="main">      
-          <App />
-          <InfiniteScroll
-          dataLength={items.length}
-          next={fetchMoreData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-          >
-            {items.map((i, index) => (
-            <Tabs>
-
-            </Tabs>
-          ))}
-          </InfiniteScroll>    
+        <div className="main">
+          
+          <Tabs />
+          <Tabs />
+          <Tabs />
         </div>
         <DarkFooter />
       </div>
