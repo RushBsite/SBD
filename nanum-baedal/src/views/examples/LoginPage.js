@@ -42,7 +42,7 @@ function LoginPage() {
       console.log('ID : ', inputId)
       console.log('PW : ', inputPw)
 
-      axios.post('http://localhost/user_inform/onLogin', null, {
+      axios.post('http://localhost:3001/user_inform/onLogin', null, {
           params: {
               'user_id': inputId,
               'user_pw': inputPw
