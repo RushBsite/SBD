@@ -58,12 +58,7 @@ function Index() {
     <>
       <IndexNavbar />
       <div className="wrapper">
-        <div className="main">
-          {isLogin ? 
-      	  // Main 컴포넌트 호출 시 isLogin 이라는 props 값을 전달
-            <Main isLogin={isLogin} /> : 
-            <Login />}
-          
+        <div className="main">          
           <Tabs />
           <Tabs />
           <Tabs />

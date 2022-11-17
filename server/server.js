@@ -2,15 +2,24 @@ const express = require('express');
 const app = express();
 const user_inform = require('./routes/user_inform');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
+
+const todoList = [{
+    id: 1,
+    text: '할일 1',
+    done: false,
+}];
+
 app.get('/', function (req, res) {
     res.send('Hello World');
 })
 
 app.get('api/todo', () => {
-    return todoList;
+    res.json(todoList);
 })
 
-app.post('/api/post', (req, res) => {
+app.post('/api/todo', (req, res) => {
     const { text, done } = req.body;
     todoList.push({
         id: id++,
