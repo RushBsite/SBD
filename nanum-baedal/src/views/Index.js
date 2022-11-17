@@ -27,6 +27,9 @@ import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 
+
+import App from './App';
+
 function Index() {
   // 로그인 상태 관리
    const [isLogin, setIsLogin] = React.useState(false)
@@ -58,7 +61,8 @@ function Index() {
     <>
       <IndexNavbar />
       <div className="wrapper">
-        <div className="main">          
+        <div className="main">      
+          <App />    
           <Tabs />
           <Tabs />
           <Tabs />
