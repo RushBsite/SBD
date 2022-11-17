@@ -56,7 +56,7 @@ function Index() {
     };
   });
 
-  const [items,setItems] = useState([1,]);
+  const [items,setItems] = useState([1,1,1]);
 
   const fetchMoreData = (e) => {
     //@TODO , db에서 data 가져오기
