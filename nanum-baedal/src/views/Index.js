@@ -43,7 +43,7 @@ function Index() {
     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
     // 로그인 상태 변경
       setIsLogin(true)
-      console.log('isLogin ?? :: ', isLogin)
+      console.log('isLogin ?? :::: ', isLogin)
     }
 
 
@@ -62,7 +62,6 @@ function Index() {
       <IndexNavbar />
       <div className="wrapper">
         <div className="main">      
-          <App />    
           <Tabs />
           <Tabs />
           <Tabs />

@@ -73,7 +73,7 @@ function LoginPage() {
 
   
   React.useEffect(() => {
-    axios.get('/user_inform/login')
+    axios.get('http://localhost:3001/user_inform/login')
     .then(res => console.log(res))
     .catch()
     document.body.classList.add("login-page");
