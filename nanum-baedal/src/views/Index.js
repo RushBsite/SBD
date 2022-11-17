@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from '../components/Login';
 import Main from '../components/Main';
 
@@ -10,6 +10,7 @@ import Main from '../components/Main';
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 // sections for this page
 import Images from "./index-sections/Images.js";
@@ -54,15 +55,30 @@ function Index() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+
+  const [items,setItems] = useState([1,]);
+
+  const fetchMoreData = (e) => {
+    //@TODO , db에서 data 가져오기
+    setItems([...items, 1]);
+  };
   return (
     <>
       <IndexNavbar />
       <div className="wrapper">
         <div className="main">
-          
-          <Tabs />
-          <Tabs />
-          <Tabs />
+        <InfiniteScroll
+          dataLength={items.length}
+          next={fetchMoreData}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+          >
+            {items.map((i, index) => (
+            <Tabs>
+
+            </Tabs>
+          ))}
+          </InfiniteScroll>
         </div>
         <DarkFooter />
       </div>
