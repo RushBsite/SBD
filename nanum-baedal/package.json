@@ -12,6 +12,7 @@
     "react-bootstrap-switch": "15.5.3",
     "react-datetime": "3.1.1",
     "react-dom": ">=16.8.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "5.2.0",
     "react-scripts": "5.0.1",
     "reactstrap": "8.9.0",
