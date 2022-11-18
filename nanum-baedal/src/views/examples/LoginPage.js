@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-
+import { useHistory } from 'react-router-dom';
 // reactstrap components
 import {
   Button,
@@ -38,9 +38,9 @@ function LoginPage() {
 
 // login 버튼 클릭 이벤트
   const onClickLogin = () => {
-      console.log('click login')
-      console.log('ID : ', inputId)
-      console.log('PW : ', inputPw)
+      //console.log('click login')
+      //console.log('ID : ', inputId)
+      //console.log('PW : ', inputPw)
 
       axios.post('http://localhost:3001/user_inform/onLogin', null, {
           params: {
@@ -94,13 +94,21 @@ function LoginPage() {
   }, []);
   return (
     <>
-      <ExamplesNavbar />
-      <div className="page-header clear-filter" filter-color="blue">
+      {/* <ExamplesNavbar /> */}
+      {/* <button onClick={ ()=>{ useHistory.goBack(); }} style={{zIndex: '1', color: 'black', margin: '10px'}}>◁ 이전 페이지</button> */}
+      <div className="page-header clear-filter" /*filter-color="blue"*/ /*style={{position: 'absolute',
+        zIndex: '0',
+        width: '100%',
+        height: '100%',
+        display: 'block',
+        left: '0',
+        top: '0',
+        content: ""}}*/>
         <div
           className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("assets/img/login.jpg") + ")"
-          }}
+          // style={{
+          //   backgroundImage: "url(" + require("assets/img/login.jpg") + ")"
+          // }}
         ></div>
         <div className="content">
           <Container>
@@ -108,12 +116,12 @@ function LoginPage() {
               <Card className="card-login card-plain">
                 <Form action="" className="form" method="">
                   <CardHeader className="text-center">
-                    <div className="logo-container">
+                    {/* <div className="logo-container"> */}
                       <img
                         alt="..."
-                        src={require("assets/img/now-logo.png")}
+                        src={require("assets/img/logo_tr.png")}
                       ></img>
-                    </div>
+                    {/* </div> */}
                   </CardHeader>
                   <CardBody>
                     <InputGroup
@@ -128,7 +136,7 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="ID..."
+                        placeholder="아이디"
                         type="text"
                         //name='input_id'
                         //value={inputId}
@@ -149,7 +157,7 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Password..."
+                        placeholder="비밀번호"
                         type="text"
                         //name='input_pw'
                         //value={inputPw}
@@ -168,7 +176,7 @@ function LoginPage() {
                       onClick={onClickLogin}
                       size="lg"
                     >
-                      Get Started
+                      로그인하기
                     </Button>
                     <div className="pull-left">
                       <h6>
@@ -177,7 +185,7 @@ function LoginPage() {
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Create Account
+                          계정 생성
                         </a>
                       </h6>
                     </div>
@@ -188,7 +196,7 @@ function LoginPage() {
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                         >
-                          Need Help?
+                           문의하기
                         </a>
                       </h6>
                     </div>
@@ -198,7 +206,7 @@ function LoginPage() {
             </Col>
           </Container>
         </div>
-        <TransparentFooter />
+        {/* <TransparentFooter /> */}
       </div>
     </>
   );
