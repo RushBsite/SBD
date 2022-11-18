@@ -17,7 +17,8 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-function IndexNavbar() {
+function IndexNavbar({answer}) {
+  const addressAnswer = answer
   const onLogout = () => {
     // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
       sessionStorage.removeItem('user_id')
@@ -107,12 +108,12 @@ function IndexNavbar() {
                 <Button
                   className="btn-neutral"
                   color="info"
-                  href=""
+                  href="/address"
                   id="change_adress"
                   target="_blank"
                 >
                   <i className="now-ui-icons arrows-1_share-66 mr-1"></i>
-                  <p>[주소지명]</p>
+                  <p>[주소지명]- {addressAnswer}</p>
                 </Button>
                 <UncontrolledTooltip target="#change_adress">
                   주소를 변경하려면 클릭

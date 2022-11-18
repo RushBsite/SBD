@@ -28,10 +28,12 @@ import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 
-function Index() {
+function Index({location}) {
   // 로그인 상태 관리
    const [isLogin, setIsLogin] = React.useState(false)
-
+   const answer = location.state.g
+   console.log(answer)
+  
   React.useEffect(() => {
     
     if(sessionStorage.getItem('user_id') === null){
@@ -64,7 +66,7 @@ function Index() {
   };
   return (
     <>
-      <IndexNavbar />
+      <IndexNavbar answer={answer}/>
       <div className="wrapper">
         <div className="main">
         <InfiniteScroll
