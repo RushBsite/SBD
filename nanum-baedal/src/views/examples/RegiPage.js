@@ -28,13 +28,17 @@ import { func } from "prop-types";
 
 function RegiPage(props)
 {
-    const [check,setCheck] = useState(false)
-
+    //const [check, setCheck] = React.useState(false);
     const [inputId, setInputId] = React.useState(false);
     const [inputPw, setInputPw] = React.useState(false);
     const [inputEmail, setInputEmail] = React.useState(false);
     const [inputBirth, setInputBirth] = React.useState(false);
-    const [inputAddress, setInputAddress] = React.useState(false);
+    const [inputAddress, setInputAddress] = React.useState('주소지명');
+
+    const initData = () =>{
+        window.localStorage.setItem("userAddress", '주소지명');
+    }
+
     const handleInputId = (e) => {
         setInputId(e.target.value)
     }
@@ -51,7 +55,7 @@ function RegiPage(props)
         setInputAddress(e.target.value)
     }
     const onclick = (e) => {
-
+        document.location.assign('/regi-address')
     }
 
     const onClickRegister = () => {
@@ -79,6 +83,7 @@ function RegiPage(props)
     }
     
     React.useEffect(() => {
+      setInputAddress(window.localStorage.getItem("userAddress"))
       axios.get('http://localhost:3001/user_inform/register')
       .then(res => console.log(res))
       .catch()
@@ -92,6 +97,7 @@ function RegiPage(props)
         document.body.classList.remove("sidebar-collapse");
       };
     }, []);
+
     return (
       <>
         {/* <ExamplesNavbar /> */}
@@ -195,12 +201,32 @@ function RegiPage(props)
                           onChange={handleInputBirth}
                         ></Input>
                       </InputGroup>
+                      <div style={{display: 'flex',}}>
+                      <InputGroup
+                        className="no-border input-lg">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="now-ui-icons location_pin"></i>
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          placeholder={inputAddress}
+                          type="text"
+                          readOnly
+                        ></Input>
+                  
+                      </InputGroup>
+                      </div>
+                      <Button color="success"
+                          onClick={onclick}
+                      >
+                        주소지정하기</Button>
 
-                      {check ? <p style={{color: 'black'}}>{window.localStorage.getItem("userName")}</p> : 
+                      {/* {check ? <p style={{color: 'black'}}>{window.localStorage.getItem("userName")}</p> : 
                         <Link to="/regi-address">
                           <p style={{color: 'black'}} onClick={()=>setCheck(true)} >주소지정하기</p>
                         </Link>
-                      } 
+                      }  */}
                       
                      {/****************************** */}
 

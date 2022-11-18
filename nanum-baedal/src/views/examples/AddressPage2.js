@@ -27,7 +27,7 @@ function AddressPage2({setModal}) {
 
   const saveData = () => {
     const userObj = getJAddress;
-    window.localStorage.setItem("userName", JSON.stringify(userObj));
+    window.localStorage.setItem("userAddress", JSON.stringify(userObj));
     console.log(userObj)
   };
 
