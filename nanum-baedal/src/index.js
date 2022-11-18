@@ -54,8 +54,8 @@ root.render(
           path="/login-page"
           render={(props) => <LoginPage {...props} />}
         />
-        <Redirect to="/index" />
-        <Redirect from="/" to="/index" />
+        <Redirect to="/landing-page" />
+        <Redirect from="/" to="/landing-page" />
       </Switch>
     </Switch>
   </BrowserRouter>

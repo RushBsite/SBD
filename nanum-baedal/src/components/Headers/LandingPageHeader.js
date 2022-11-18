@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 // reactstrap components
 import { Button, Container } from "reactstrap";
 
@@ -33,32 +33,17 @@ function LandingPageHeader() {
         ></div>
         <div className="content-center">
           <Container>
-            <h1 className="title">This is our great company.</h1>
+            <h1 className="title">나눔의 민족</h1>
             <div className="text-center">
-              <Button
-                className="btn-icon btn-round"
-                color="info"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <i className="fab fa-facebook-square"></i>
-              </Button>
-              <Button
-                className="btn-icon btn-round"
-                color="info"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <i className="fab fa-twitter"></i>
-              </Button>
-              <Button
-                className="btn-icon btn-round"
-                color="info"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <i className="fab fa-google-plus"></i>
-              </Button>
+            <Button
+              className="btn-round btn-blue"
+              color="info"
+              to="/login-page"
+              size="lg"
+              tag={Link}
+            >
+              로그인 하러 가기
+            </Button>
             </div>
           </Container>
         </div>

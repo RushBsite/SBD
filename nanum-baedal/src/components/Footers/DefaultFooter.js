@@ -15,26 +15,10 @@ function DefaultFooter() {
             <ul>
               <li>
                 <a
-                  href="https://www.creative-tim.com?ref=nukr-default-footer"
+                  href="https://github.com/RushBsite/SBD"
                   target="_blank"
                 >
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a
-                  href="http://presentation.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="http://blog.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
-                >
-                  Blog
+                  github.com/RushBsite/SBD
                 </a>
               </li>
             </ul>
