@@ -83,7 +83,11 @@ function RegiPage(props)
     }
     
     React.useEffect(() => {
-      setInputAddress(window.localStorage.getItem("userAddress"))
+      if(window.localStorage.getItem("userAddress")==null){
+        initData()
+      }else{
+        setInputAddress(window.localStorage.getItem("userAddress"))
+      }
       axios.get('http://localhost:3001/user_inform/register')
       .then(res => console.log(res))
       .catch()
