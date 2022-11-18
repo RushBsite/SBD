@@ -100,7 +100,7 @@ function IndexNavbar() {
                   <p>로그아웃</p>
                 </Button>
                 <UncontrolledTooltip target="#logout_btn">
-                  로그아웃 하기
+                  로그아웃을 하기
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>    
