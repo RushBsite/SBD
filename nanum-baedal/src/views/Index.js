@@ -28,10 +28,13 @@ import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 
-function Index({location}) {
+function Index() {
   // 로그인 상태 관리
    const [isLogin, setIsLogin] = React.useState(false)
-   const answer = location.state.g
+   const [answer,setAnser] = React.useState('')
+
+   // setAnser(location.state.g)
+    
    console.log(answer)
   
   React.useEffect(() => {
@@ -66,7 +69,7 @@ function Index({location}) {
   };
   return (
     <>
-      <IndexNavbar answer={answer}/>
+      <IndexNavbar answer={"서울"}/>
       <div className="wrapper">
         <div className="main">
         <InfiniteScroll

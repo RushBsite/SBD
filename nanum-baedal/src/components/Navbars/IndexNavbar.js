@@ -18,7 +18,9 @@ import {
 } from "reactstrap";
 
 function IndexNavbar({answer}) {
+
   const addressAnswer = answer
+
   const onLogout = () => {
     // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
       sessionStorage.removeItem('user_id')

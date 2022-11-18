@@ -17,7 +17,7 @@ function AddressPage() {
   const [getLatitude, setLatitude] = useState(37.5656); // 초기 위치는 query에서 받아와서 넣을 예정
   const [getLongitude, setLongitude] = useState(126.9769);
   const [getAddress, setAddress] = useState("-");
-  const [getJAddress, setJAddress] = useState("");
+  const [getJAddress, setJAddress] = useState("서울특별시");
   const [getMoreAddress, setMoreAddress] = useState("");
   const [search, setSearch] = useState("");
   let mapRef = useRef(null);
@@ -135,16 +135,21 @@ function AddressPage() {
       <div style={{ flex: 1 }}>
         <div ref={mapElement} style={{ width: '100%', height: '100%'}}/>
         <div style={{ position: 'absolute', bottom: '-10%', transform: 'translate(-50%, -50%)', left: '50%', width: '30%', minWidth:'200px', backgroundColor: 'white', zIndex: 1, padding: '10px', borderRadius: '10%', textAlign: 'center'}}>
+        
           <div id='searchPlace'>
             <input type="text" value={search} onChange={onChange} style={{border: 'none', borderBottom: '1px solid', margin: '2px', blockSize: '16px', width: '60%'}}/>
             <button onClick={onSearch} style={{border: 'none', backgroundColor: 'white', fontSize: 'large'}}>🔍</button><br/>
           </div><br/>
+          
           <div style={{ fontWeight: 'Bold', whiteSpace: 'pre-line'}}>ex) 서울특별시 강남구 ~로까지 입력해주세요</div><br></br>
+          
           <div style={{ fontWeight: 'Bold', whiteSpace: 'pre-line' }}>현재 주소</div><div>{getAddress}({getJAddress})</div>
           {/* <div style={{ fontWeight: 'Bold' }}>상세주소</div><input type='text' value={getMoreAddress} onChange={onChangeAdd} style={{border: 'none', borderBottom: '1px solid', margin: '2px', blockSize: '16px', width: '60%'}}/> */}
+          
           <div id="button-box">
-            <Link to={{pathname:'/index', state: {g: getJAddress}}}><button id="accept" style={{padding: '15px 50px 15px 50px', borderRadius: '15px', backgroundColor: '#06f', fontSize: 'medium', color: 'white', outline: '0', borderColor: 'white'}}>이 위치로 지정</button></Link>
+            <Link to={{pathname:'/index', state: {g : getJAddress}}}> <button id="accept" style={{padding: '15px 50px 15px 50px', borderRadius: '15px', backgroundColor: '#06f', fontSize: 'medium', color: 'white', outline: '0', borderColor: 'white'}}>이 위치로 지정</button></Link>
           </div>
+          
         </div>
       </div>
     </div>
