@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import AddressPage2 from "./AddressPage2";
+import useLocalStorage from "components/useLocalStorage";
 // reactstrap components
 import {
   Button,
@@ -22,8 +25,11 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import { func } from "prop-types";
 
-function RegiPage()
+
+function RegiPage(props)
 {
+    const [check,setCheck] = useState(false)
+
     const [inputId, setInputId] = React.useState(false);
     const [inputPw, setInputPw] = React.useState(false);
     const [inputEmail, setInputEmail] = React.useState(false);
@@ -43,6 +49,9 @@ function RegiPage()
     }
     const handleInputAddress = (e) => {
         setInputAddress(e.target.value)
+    }
+    const onclick = (e) => {
+
     }
 
     const onClickRegister = () => {
@@ -187,23 +196,13 @@ function RegiPage()
                         ></Input>
                       </InputGroup>
 
-                      <InputGroup
-                        className={
-                          "no-border input-lg" +
-                          (inputAddress ? " input-group-focus" : "")
-                        }
-                      >
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="now-ui-icons text_caps-small"></i>
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input
-                          placeholder="Address"
-                          type="text"
-                          onChange={handleInputAddress}
-                        ></Input>
-                      </InputGroup>
+                      {check ? <p style={{color: 'black'}}>{window.localStorage.getItem("userName")}</p> : 
+                        <Link to="/regi-address">
+                          <p style={{color: 'black'}} onClick={()=>setCheck(true)} >주소지정하기</p>
+                        </Link>
+                      } 
+                      
+                     {/****************************** */}
 
                     </CardBody>
                     <CardFooter className="text-center">
