@@ -8,6 +8,7 @@
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
     "moment": "2.29.4",
+    "mysql": "^2.18.1",
     "nouislider": "15.1.0",
     "react": ">=16.8.0",
     "react-bootstrap-switch": "15.5.3",
