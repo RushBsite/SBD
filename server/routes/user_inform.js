@@ -8,8 +8,13 @@ router.get('/login', (req, res) => {
     res.send({datas: 'data'})
 });
 
+router.get('/register', (req, res) => {
+	// 임시로 값을 넣어 주었다.
+    res.send({datas: 'data'})
+});
+
 router.post('/onLogin', (req, res) => {
-    console.log(`= = = > req : ${util.inspect(req)}`)
+    //console.log(`= = = > req : ${util.inspect(req)}`)
    	// user_id, user_pw 변수로 선언
     const user_id = req.query.user_id
     const user_pw = req.query.user_pw
@@ -40,6 +45,24 @@ router.post('/onLogin', (req, res) => {
                     }
                 })
             }
+        } else {
+            res.send(err)
+        }
+    })
+});
+
+
+router.post('/onRegister', (req,res) => {
+    const user_id = req.query.user_id
+    const user_pw = req.query.user_pw
+    const user_email = req.query.user_email
+    const user_birth = req.query.user_birth
+    const user_address = req.query.user_address
+    const sql1 = 'insert into user(ID, PASSWORD, EMAIL, BIRTH, ADDRESS) values(?, ?, ?, ?, ?);'
+    var params = [user_id, user_pw, user_email, user_birth, user_address]
+    db.query(sql1, params, (err) => {
+        if(!err){
+            res.send('register ok')
         } else {
             res.send(err)
         }

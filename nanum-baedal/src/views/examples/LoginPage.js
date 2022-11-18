@@ -77,6 +77,10 @@ function LoginPage() {
       .catch()
   }
 
+  const onClickRegipage = () => {
+
+  }
+
   
   React.useEffect(() => {
     axios.get('http://localhost:3001/user_inform/login')
@@ -182,8 +186,8 @@ function LoginPage() {
                       <h6>
                         <a
                           className="link"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          href="/register-page"
+                          //onClick={(e) => e.preventDefault()}
                         >
                           계정 생성
                         </a>
