@@ -18,6 +18,12 @@ import {
 } from "reactstrap";
 
 function IndexNavbar() {
+  const onLogout = () => {
+    // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
+      sessionStorage.removeItem('user_id')
+      // App 으로 이동(새로고침)
+      document.location.href = '/landing-page'
+  }
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -82,20 +88,19 @@ function IndexNavbar() {
             isOpen={collapseOpen}
             navbar
           >
-            <Nav navbar>              
+            <Nav navbar>     
               <NavItem>    
                 <Button
                   className="btn-round btn-white"
                   color="default"
-                  id="login_btn"
-                  to="/login-page"
-                  tag={Link}
+                  id="logout_btn"
+                  onClick={onLogout}
                 >
                   <i className="now-ui-icons arrows-1_share-66 mr-1"></i>
-                  <p>로그인</p>
+                  <p>로그아웃</p>
                 </Button>
-                <UncontrolledTooltip target="#login_btn">
-                  로그인 하러 가기
+                <UncontrolledTooltip target="#logout_btn">
+                  로그아웃 하기
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>    

@@ -66,7 +66,13 @@ function LoginPage() {
               sessionStorage.setItem('user_id', inputId)
           }
           // 작업 완료 되면 페이지 이동(새로고침)
+          if(sessionStorage.getItem('user_id') === null){
+          // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
+            document.location.href = '/login-page'
+          } else {
+          // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
           document.location.href = '/index'
+          }
       })
       .catch()
   }
