@@ -15,7 +15,6 @@ router.get('/register', (req, res) => {
 
 router.post('/index_defaul_address', (req, res) => {
     const user_id = req.query.user_id
-    console.log(user_id);
     const sql1 = 'SELECT ADDRESS FROM user WHERE ID = ?;'
 
     db.query(sql1, user_id, (err, data) => {
@@ -31,7 +30,7 @@ router.post('/address_save', (req, res) => {
     const user_id = req.query.user_id
     const user_address = req.query.user_address
     
-    const sql1 = 'update user set ADDRESS=? where ID = ?;'
+    const sql1 = 'update user set ADDRESS = ? where ID = ?;'
     var params = [user_address, user_id]
     db.query(sql1, params, (err) => {
         if(err){console.log(err)}
