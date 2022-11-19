@@ -2,6 +2,19 @@ import React, { useState } from "react";
 import axios from 'axios';
 import Login from '../components/Login';
 import Main from '../components/Main';
+import { 
+  Card, 
+  Button, 
+  CardImg,
+  CardHeader,
+  CardTitle, 
+  CardText, 
+  CardColumns,
+  CardSubtitle, 
+  CardBody,
+  Container,
+  Row,
+  Col, } from 'reactstrap';
 
 // reactstrap components
 // import {
@@ -79,7 +92,7 @@ function Index() {
     };
   }, []);
 
-  const [items,setItems] = useState([1,1,1]);
+  const [items,setItems] = useState([]);
   const [itemIndex,setitemIndex] = useState(2);
   const [itemsolo,setitemsolo] = useState('');
 
@@ -109,6 +122,7 @@ function Index() {
       <IndexNavbar answer={address}/>
       <div className="wrapper">
         <div className="main">
+        <IndexHeader></IndexHeader>
         <InfiniteScroll
           dataLength={items.length}
           next={fetchMoreData}
@@ -116,7 +130,26 @@ function Index() {
           loader={<h4>Loading...</h4>}
           >
             {items.map((i, index) => (
-              <Tabs members={i.members}/>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '700px', width: 'auto'}}>
+              <div className="card">
+                 <Container style = {{justifyContent:'center', alignItems: 'center', height: '0vh'}}>
+                    <Row className="ml-auto mr-auto">
+                       <p className="category"></p>
+                        <Card style= {{display: 'flex' ,justifyContent: 'center' ,flexBasis: 'auto', flexShrink: '1', flexGrow: '1'}}>
+                          <CardImg style={{flexBasis: 'auto', height: '400px', width: 'auto', objectFit: 'cover'}} src="https://cdnweb01.wikitree.co.kr/webdata/editor/202007/10/img_20200710134132_8741c24c.webp" alt="Card image cap" />
+                          <CardBody>
+                            <CardTitle>작성자: {i.owner} 작성시간: {i.datetime}</CardTitle>
+                            <CardTitle>매장: {i.pickupAddress}</CardTitle>
+                            <CardTitle>배달 주소: {i.pickupAddress}</CardTitle>
+                            <CardSubtitle>현재 모집 인원수: {i.members}</CardSubtitle>
+                            <CardText></CardText>
+                            <Button color="info">공동모집글 참여하기</Button>
+                          </CardBody>
+                        </Card>
+                    </Row>
+                  </Container>
+                </div>
+              </div>
 
           ))}
 
