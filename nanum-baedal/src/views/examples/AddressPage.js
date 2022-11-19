@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class Head extends React.Component {
@@ -75,6 +76,14 @@ function AddressPage() {
     setMoreAddress(e.target.value);
   }
 
+  const onAddressSave = (e) => {
+    axios.post('http://localhost:3001/user_inform/address_save', null, {
+          params: {
+              'user_address': getJAddress,
+          }
+      })
+    
+  }
   const onSearch = (e) => {
     if (search === ''){
       return alert('주소를 입력해주세요.');
@@ -147,7 +156,7 @@ function AddressPage() {
           {/* <div style={{ fontWeight: 'Bold' }}>상세주소</div><input type='text' value={getMoreAddress} onChange={onChangeAdd} style={{border: 'none', borderBottom: '1px solid', margin: '2px', blockSize: '16px', width: '60%'}}/> */}
           
           <div id="button-box">
-            <Link to={{pathname:'/index', state: {g : getJAddress}}}> <button id="accept" style={{padding: '15px 50px 15px 50px', borderRadius: '15px', backgroundColor: '#06f', fontSize: 'medium', color: 'white', outline: '0', borderColor: 'white'}}>이 위치로 지정</button></Link>
+            <Link to={{pathname:'/index', state: {g : getJAddress}}}> <button id="accept" onChane={onAddressSave} style={{padding: '15px 50px 15px 50px', borderRadius: '15px', backgroundColor: '#06f', fontSize: 'medium', color: 'white', outline: '0', borderColor: 'white'}}>이 위치로 지정</button></Link>
           </div>
           
         </div>

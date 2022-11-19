@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import Login from '../components/Login';
 import Main from '../components/Main';
 
@@ -32,9 +33,9 @@ function Index() {
   // 로그인 상태 관리
    const [isLogin, setIsLogin] = React.useState(false)
    const [answer,setAnser] = React.useState('')
+   const [address,setAddress] = React.useState('')
 
    // setAnser(location.state.g)
-    
    console.log(answer)
   
   React.useEffect(() => {
@@ -46,8 +47,18 @@ function Index() {
     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
     // 로그인 상태 변경
       setIsLogin(true)
-      console.log('isLogin ?? :: ', isLogin)
+      console.log('isLogin ?? :::: ', isLogin)
     }
+
+
+    axios.post('http://localhost:3001/user_inform/index_defaul_address', null, {
+      params: {'user_id' : sessionStorage.getItem('user_id')}
+    })
+    .then(res => {
+      setAddress(res.data.ADDRESS)
+      console.log(address)
+    })
+    .catch()
 
 
     document.body.classList.add("index-page");
@@ -59,7 +70,7 @@ function Index() {
       document.body.classList.remove("index-page");
       document.body.classList.remove("sidebar-collapse");
     };
-  });
+  }, []);
 
   const [items,setItems] = useState([1,1,1]);
 
@@ -69,7 +80,7 @@ function Index() {
   };
   return (
     <>
-      <IndexNavbar answer={"서울"}/>
+      <IndexNavbar answer={address}/>
       <div className="wrapper">
         <div className="main">
         <InfiniteScroll

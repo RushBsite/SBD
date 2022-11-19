@@ -70,16 +70,15 @@ function RegiPage(props)
       })
       .then(res => {
         console.log(res)
-        if(res != 'register ok'){
+        if(res !== 'register ok'){
             alert('회원가입에 실패했습니다. 올바른 정보를 입력해 주십시오.')
-            document.location.href = '/register-page'
+            //document.location.href = '/register-page'
         } else {
             alert('회원가입이 완료되었습니다. 로그인 페이지에서 로그인해 주십시오.')
-            document.location.href = '/login-page'
+            //document.location.href = '/login-page'
         }
       })
       .catch()
-  
     }
     
     React.useEffect(() => {
@@ -204,6 +203,7 @@ function RegiPage(props)
                           type="text"
                           onChange={handleInputBirth}
                         ></Input>
+                        
                       </InputGroup>
                       <div style={{display: 'flex',}}>
                       <InputGroup
