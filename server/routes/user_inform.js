@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const util = require('util');
+
+var bulletinIndex = 1;
  
 router.get('/login', (req, res) => {
 	// 임시로 값을 넣어 주었다.
@@ -11,6 +13,27 @@ router.get('/login', (req, res) => {
 router.get('/register', (req, res) => {
 	// 임시로 값을 넣어 주었다.
     res.send({datas: 'data'})
+});
+
+
+router.get('/InitIndex', (req,res) => {
+    bulletinIndex = 1;
+});
+
+router.get('/indexbulletin', (req, res) => {
+	// 임시로 값을 넣어 주었다.
+    const sql1 = 'SELECT * FROM party where ID = ?'
+    //console.log(bulletinIndex);
+    db.query(sql1, bulletinIndex, (err, data) => {
+        if(!err){
+            res.send(data[0])
+            //console.log(data[0])
+            bulletinIndex = bulletinIndex + 1
+        } else {
+            res.send('sql query error')
+        }
+    })
+
 });
 
 router.post('/index_defaul_address', (req, res) => {

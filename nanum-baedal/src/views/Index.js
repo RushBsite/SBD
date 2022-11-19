@@ -29,11 +29,15 @@ import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
 
+
 function Index() {
   // 로그인 상태 관리
    const [isLogin, setIsLogin] = React.useState(false)
    const [answer,setAnser] = React.useState('')
    const [address,setAddress] = React.useState('')
+   //index 페이지 시작 시 설정할 parameter
+   //게시글이 더 없다면 InfinityScroll을 정지시키기 위한 변수
+   const [isMoreBulltin,setisMoreBulltin] = React.useState(true)
 
    // setAnser(location.state.g)
    console.log(answer)
@@ -50,6 +54,9 @@ function Index() {
       console.log('isLogin ?? :::: ', isLogin)
     }
 
+    //index 페이지 시작 시 설정할 parameter
+    //게시글을 query로 불러올때 필요한 서버쪽의 변수를 초기화시키기 위함
+    axios.get('http://localhost:3001/user_inform/InitIndex')
 
     axios.post('http://localhost:3001/user_inform/index_defaul_address', null, {
       params: {'user_id' : sessionStorage.getItem('user_id')}
@@ -73,11 +80,30 @@ function Index() {
   }, []);
 
   const [items,setItems] = useState([1,1,1]);
+  const [itemIndex,setitemIndex] = useState(2);
+  const [itemsolo,setitemsolo] = useState('');
 
   const fetchMoreData = (e) => {
     //@TODO , db에서 data 가져오기
-    setItems([...items, 1]);
+    axios.get('http://localhost:3001/user_inform/indexbulletin')
+    .then(res => {
+      //console.log(res.data)
+      if(res.data !== ""){
+        setItems([...items, res.data]);
+        setitemsolo(res.data);
+        setitemIndex(itemIndex + 1);
+      } else {
+        setisMoreBulltin(false)
+      }
+      console.log(itemIndex);
+      console.log(items);
+      //console.log(itemsolo);
+      //console.log(res.data.members)
+    })
+    .catch()
+
   };
+
   return (
     <>
       <IndexNavbar answer={address}/>
@@ -86,14 +112,14 @@ function Index() {
         <InfiniteScroll
           dataLength={items.length}
           next={fetchMoreData}
-          hasMore={true}
+          hasMore={isMoreBulltin}
           loader={<h4>Loading...</h4>}
           >
             {items.map((i, index) => (
-            <Tabs>
+              <Tabs members={i.members}/>
 
-            </Tabs>
           ))}
+
           </InfiniteScroll>
         </div>
         <DarkFooter />
