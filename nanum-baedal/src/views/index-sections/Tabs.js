@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../assets/css/bootstrap.min.css'
 import { 
   Card, 
   Button, 
@@ -17,10 +16,9 @@ import {
   function Tabs() {
     return (
     <>
-    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '700px', width: 'auto'}}>
       <div className="card">
          <Container style = {{justifyContent:'center', alignItems: 'center', height: '0vh'}}>
-            <Row className="ml-auto mr-auto">
+            <Row className="ml-auto mr-auto" style={{height: '500px',width: 'auto', paddingTop: '50px'}}>
                <p className="category"></p>
                 <Card style= {{display: 'flex' ,justifyContent: 'center' ,flexBasis: 'auto', flexShrink: '1', flexGrow: '1'}}>
                   <CardImg style={{flexBasis: 'auto', height: '400px', width: 'auto', objectFit: 'cover'}} src="https://cdnweb01.wikitree.co.kr/webdata/editor/202007/10/img_20200710134132_8741c24c.webp" alt="Card image cap" />
@@ -33,7 +31,6 @@ import {
                 </Card>
             </Row>
           </Container>
-        </div>
       </div>
     </>
   );

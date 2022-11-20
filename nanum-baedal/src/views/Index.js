@@ -17,6 +17,8 @@ import Images from "./index-sections/Images.js";
 import BasicElements from "./index-sections/BasicElements.js";
 import Navbars from "./index-sections/Navbars.js";
 import Tabs from "./index-sections/Tabs.js";
+import ModalText from "./index-sections/Modal.js";
+import Form from "./index-sections/Form";
 import Pagination from "./index-sections/Pagination.js";
 import Notifications from "./index-sections/Notifications.js";
 import Typography from "./index-sections/Typography.js";
@@ -27,6 +29,7 @@ import CompleteExamples from "./index-sections/CompleteExamples.js";
 import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
+import { ModalDialog } from "react-bootstrap";
 
 function Index() {
   // 로그인 상태 관리
@@ -70,8 +73,13 @@ function Index() {
   return (
     <>
       <IndexNavbar answer={"서울"}/>
+
       <div className="wrapper">
         <div className="main">
+        <ModalText>
+        </ModalText>
+        <Form>
+        </Form>
         <InfiniteScroll
           dataLength={items.length}
           next={fetchMoreData}
