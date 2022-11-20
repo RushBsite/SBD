@@ -51,6 +51,7 @@ import {
   ChildButton,
   Directions
 } from 'react-floating-button-menu';
+import 'react-floating-button-menu/dist/index.css';
 
 
 function Index() {
@@ -107,21 +108,7 @@ function Index() {
   const [itemsolo,setitemsolo] = useState('');
   const [isOpen,setOpen] = useState(false);
 
-  const FloatingBox = styled.div`
-  position: fixed;
-  line-height: 63px;
-  bottom: 150px;
-  right: 80px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
-
+  
   const fetchMoreData = (e) => {
     //@TODO , db에서 data 가져오기
     axios.get('http://localhost:3001/user_inform/indexbulletin')
@@ -149,10 +136,6 @@ function Index() {
       <div className="wrapper">
         <div className="main">
         <IndexHeader></IndexHeader>
-        <ModalText>
-        </ModalText>
-        <Form>
-        </Form>
         <InfiniteScroll
           dataLength={items.length}
           next={fetchMoreData}
@@ -186,24 +169,27 @@ function Index() {
           </InfiniteScroll>
           
         </div>
-        <FloatingBox>
+        <div style={{position: "fixed",
+              bottom: "20px",
+              right: "20px",
+              width: "auto",
+              padding: "10px"}}>
           <FloatingMenu
-            
             slideSpeed={500}
             direction={Directions.Up}
             spacing={8}
             isOpen={isOpen}
           >
             <MainButton
-              iconResting={<i class="now-ui-icons ui-1_simple-add" style={{fontSize: 20}}></i>}
-              iconActive={<i class="now-ui-icons ui-1_simple-delete" style={{fontSize: 20}}></i>}
-              background="orange"
+              iconResting={<i class="now-ui-icons ui-1_simple-add" style={{fontSize: 30}}></i>}
+              iconActive={<i class="now-ui-icons ui-1_simple-delete" style={{fontSize: 30}}></i>}
+              background="#2ca8ff"
               onClick={() => setOpen(!isOpen)}
               size={100}
             />
             <ChildButton
               icon={<i class="now-ui-icons users_single-02"></i>}
-              background="white"
+              background="#ffb236"
               size={70}
               onClick={() => console.log('First button clicked')}
             />
@@ -211,10 +197,10 @@ function Index() {
               icon={<i>create</i>}
               background="white"
               size={70}
+              onClick={() => console.log('Second button clicked')}
             />
           </FloatingMenu>
-        </FloatingBox>
-        
+          </div>    
         <DarkFooter />
       </div>
       
