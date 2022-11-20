@@ -16,18 +16,8 @@ function Form() {
             </div>
 
             <div style={{marginTop: '20px'}}>
-                <label for="myMenu">내 주문 메뉴</label>
+                <label for="myMenu">배달장소 - api 연결필요</label>
                 <input type="text" class="form-control" id="내주문 메뉴" placeholder="주문 메뉴 입력하기"></input>
-            </div>
-
-            <div class="form-group" style={{marginTop: '20px'}}>
-                <label for="exampleFormControlSelect1"> 함께 주문할 인원 수</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
             </div>
 
                 <FormGroup style={{marginTop: '20px'}}>
