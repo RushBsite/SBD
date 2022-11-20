@@ -9,7 +9,9 @@ import {
   CardImg,
   CardHeader,
   CardTitle, 
-  CardText, 
+  CardText,
+  Modal,
+  ModalBody, 
   CardColumns,
   CardSubtitle, 
   CardBody,
@@ -107,6 +109,7 @@ function Index() {
   const [itemIndex,setitemIndex] = useState(2);
   const [itemsolo,setitemsolo] = useState('');
   const [isOpen,setOpen] = useState(false);
+  const [modal1, setModal1] = React.useState(false);
 
   
   const fetchMoreData = (e) => {
@@ -136,6 +139,9 @@ function Index() {
       <div className="wrapper">
         <div className="main">
         <IndexHeader></IndexHeader>
+        <Modal isOpen={modal1} toggle={() => setModal1(false)}>
+          <Form></Form>
+        </Modal>
         <InfiniteScroll
           dataLength={items.length}
           next={fetchMoreData}
@@ -197,8 +203,9 @@ function Index() {
               icon={<i>create</i>}
               background="white"
               size={70}
-              onClick={() => console.log('Second button clicked')}
-            />
+              onClick={() => setModal1(true)}
+            >
+            </ChildButton>
           </FloatingMenu>
           </div>    
         <DarkFooter />
