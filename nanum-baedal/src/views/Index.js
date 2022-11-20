@@ -43,7 +43,6 @@ import CompleteExamples from "./index-sections/CompleteExamples.js";
 import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
-import { ModalDialog } from "react-bootstrap";
 
 
 function Index() {
