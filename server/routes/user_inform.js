@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const util = require('util');
+
+var bulletinIndex = 1;
  
 router.get('/login', (req, res) => {
 	// 임시로 값을 넣어 주었다.
@@ -11,6 +13,51 @@ router.get('/login', (req, res) => {
 router.get('/register', (req, res) => {
 	// 임시로 값을 넣어 주었다.
     res.send({datas: 'data'})
+});
+
+
+router.get('/InitIndex', (req,res) => {
+    bulletinIndex = 1;
+});
+
+router.get('/indexbulletin', (req, res) => {
+	// 임시로 값을 넣어 주었다.
+    const sql1 = 'SELECT * FROM party where ID = ?'
+    //console.log(bulletinIndex);
+    db.query(sql1, bulletinIndex, (err, data) => {
+        if(!err){
+            res.send(data[0])
+            //console.log(data[0])
+            bulletinIndex = bulletinIndex + 1
+        } else {
+            res.send('sql query error')
+        }
+    })
+
+});
+
+router.post('/index_defaul_address', (req, res) => {
+    const user_id = req.query.user_id
+    const sql1 = 'SELECT ADDRESS FROM user WHERE ID = ?;'
+
+    db.query(sql1, user_id, (err, data) => {
+        if(!err){
+            res.send(data[0])
+        } else {
+            res.send("sql query errer")
+        }
+    })
+});
+
+router.post('/address_save', (req, res) => {
+    const user_id = req.query.user_id
+    const user_address = req.query.user_address
+    
+    const sql1 = 'update user set ADDRESS = ? where ID = ?;'
+    var params = [user_address, user_id]
+    db.query(sql1, params, (err) => {
+        if(err){console.log(err)}
+    })
 });
 
 router.post('/onLogin', (req, res) => {

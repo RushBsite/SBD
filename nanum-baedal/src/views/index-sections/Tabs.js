@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import '../../assets/css/bootstrap.min.css'
 import { 
   Card, 
   Button, 
@@ -14,6 +16,13 @@ import {
   Col, } from 'reactstrap';
 
   function Tabs() {
+
+    //console.log(members)
+    // console.log(datetime)
+    // console.log(pickupAddress)
+    // console.log(content)
+
+
     return (
     <>
       <div className="card">
@@ -23,6 +32,8 @@ import {
                 <Card style= {{display: 'flex' ,justifyContent: 'center' ,flexBasis: 'auto', flexShrink: '1', flexGrow: '1'}}>
                   <CardImg style={{flexBasis: 'auto', height: '400px', width: 'auto', objectFit: 'cover'}} src="https://cdnweb01.wikitree.co.kr/webdata/editor/202007/10/img_20200710134132_8741c24c.webp" alt="Card image cap" />
                   <CardBody>
+                    <CardTitle>작성자</CardTitle>
+                    <CardTitle>작성 날짜:  </CardTitle>
                     <CardTitle>피자헛 강남점</CardTitle>
                     <CardSubtitle>현재 모집 인원수 3/4</CardSubtitle>
                     <CardText></CardText>

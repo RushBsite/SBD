@@ -32,6 +32,7 @@ import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import AddressPage from "views/examples/AddressPage";
 import RegisterPage from "views/examples/RegiPage.js";
+import AddressPage2 from "views/examples/AddressPage2";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -63,9 +64,14 @@ root.render(
           path="/Register-page"
           render={(props) => <RegisterPage {...props} />}
         />
+        <Route
+          path="/regi-address"
+          render={(props) => <AddressPage2 {...props} />}
+        />
         <Redirect to="/landing-page" />
         <Redirect from="/" to="/landing-page" />
       </Switch>
     </Switch>
   </BrowserRouter>
 );
+//regi-address

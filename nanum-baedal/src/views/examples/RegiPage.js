@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import AddressPage2 from "./AddressPage2";
+import useLocalStorage from "components/useLocalStorage";
 // reactstrap components
 import {
   Button,
@@ -22,13 +25,20 @@ import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import { func } from "prop-types";
 
-function RegiPage()
+
+function RegiPage(props)
 {
+    //const [check, setCheck] = React.useState(false);
     const [inputId, setInputId] = React.useState(false);
     const [inputPw, setInputPw] = React.useState(false);
     const [inputEmail, setInputEmail] = React.useState(false);
     const [inputBirth, setInputBirth] = React.useState(false);
-    const [inputAddress, setInputAddress] = React.useState(false);
+    const [inputAddress, setInputAddress] = React.useState('주소지명');
+
+    const initData = () =>{
+        window.localStorage.setItem("userAddress", '주소지명');
+    }
+
     const handleInputId = (e) => {
         setInputId(e.target.value)
     }
@@ -44,6 +54,9 @@ function RegiPage()
     const handleInputAddress = (e) => {
         setInputAddress(e.target.value)
     }
+    const onclick = (e) => {
+        document.location.assign('/regi-address')
+    }
 
     const onClickRegister = () => {
         axios.post('http://localhost:3001/user_inform/onRegister', null, {
@@ -57,19 +70,23 @@ function RegiPage()
       })
       .then(res => {
         console.log(res)
-        if(res != 'register ok'){
+        if(res !== 'register ok'){
             alert('회원가입에 실패했습니다. 올바른 정보를 입력해 주십시오.')
-            document.location.href = '/register-page'
+            //document.location.href = '/register-page'
         } else {
             alert('회원가입이 완료되었습니다. 로그인 페이지에서 로그인해 주십시오.')
-            document.location.href = '/login-page'
+            //document.location.href = '/login-page'
         }
       })
       .catch()
-  
     }
     
     React.useEffect(() => {
+      if(window.localStorage.getItem("userAddress")==null){
+        initData()
+      }else{
+        setInputAddress(window.localStorage.getItem("userAddress"))
+      }
       axios.get('http://localhost:3001/user_inform/register')
       .then(res => console.log(res))
       .catch()
@@ -83,6 +100,7 @@ function RegiPage()
         document.body.classList.remove("sidebar-collapse");
       };
     }, []);
+
     return (
       <>
         {/* <ExamplesNavbar /> */}
@@ -185,25 +203,36 @@ function RegiPage()
                           type="text"
                           onChange={handleInputBirth}
                         ></Input>
+                        
                       </InputGroup>
-
+                      <div style={{display: 'flex',}}>
                       <InputGroup
-                        className={
-                          "no-border input-lg" +
-                          (inputAddress ? " input-group-focus" : "")
-                        }
-                      >
+                        className="no-border input-lg">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="now-ui-icons text_caps-small"></i>
+                            <i className="now-ui-icons location_pin"></i>
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="Address"
+                          placeholder={inputAddress}
                           type="text"
-                          onChange={handleInputAddress}
+                          readOnly
                         ></Input>
+                  
                       </InputGroup>
+                      </div>
+                      <Button color="success"
+                          onClick={onclick}
+                      >
+                        주소지정하기</Button>
+
+                      {/* {check ? <p style={{color: 'black'}}>{window.localStorage.getItem("userName")}</p> : 
+                        <Link to="/regi-address">
+                          <p style={{color: 'black'}} onClick={()=>setCheck(true)} >주소지정하기</p>
+                        </Link>
+                      }  */}
+                      
+                     {/****************************** */}
 
                     </CardBody>
                     <CardFooter className="text-center">

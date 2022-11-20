@@ -77,9 +77,6 @@ function LoginPage() {
       .catch()
   }
 
-  const onClickRegipage = () => {
-
-  }
 
   
   React.useEffect(() => {

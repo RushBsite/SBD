@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import useLocalStorage from 'components/useLocalStorage';
 
 class Head extends React.Component {
   render() {
@@ -13,17 +13,23 @@ class Head extends React.Component {
   }
 }
 
-function AddressPage() {
+function AddressPage2({setModal}) {
   const mapElement = useRef(null);
   const [getLatitude, setLatitude] = useState(37.5656); // 초기 위치는 query에서 받아와서 넣을 예정
   const [getLongitude, setLongitude] = useState(126.9769);
   const [getAddress, setAddress] = useState("-");
-  const [getJAddress, setJAddress] = useState("서울특별시");
+  const [getJAddress, setJAddress] = useState("서울")
   const [getMoreAddress, setMoreAddress] = useState("");
   const [search, setSearch] = useState("");
   let mapRef = useRef(null);
   let pinRef = useRef(null);
   let lat, long;
+
+  const saveData = () => {
+    const userObj = getJAddress;
+    window.localStorage.setItem("userAddress", JSON.stringify(userObj));
+    console.log(userObj)
+  };
 
   function getLocation() {
     if (navigator.geolocation) {
@@ -74,17 +80,6 @@ function AddressPage() {
   const onChangeAdd = (e) => {
     e.preventDefault();
     setMoreAddress(e.target.value);
-  }
-
-  const onAddressSave = (e) => {
-    console.log(getJAddress)
-    axios.post('http://localhost:3001/user_inform/address_save', null, {
-        params: {
-          'user_id': sessionStorage.getItem('user_id'),
-          'user_address': getJAddress
-        }
-      }).catch()
-    
   }
 
   const onSearch = (e) => {
@@ -159,9 +154,8 @@ function AddressPage() {
           {/* <div style={{ fontWeight: 'Bold' }}>상세주소</div><input type='text' value={getMoreAddress} onChange={onChangeAdd} style={{border: 'none', borderBottom: '1px solid', margin: '2px', blockSize: '16px', width: '60%'}}/> */}
           
           <div id="button-box">
-            <Link to={{pathname:'/index', state: {g : getJAddress}}}> <button id="accept" onClick={onAddressSave} style={{padding: '15px 50px 15px 50px', borderRadius: '15px', backgroundColor: '#06f', fontSize: 'medium', color: 'white', outline: '0', borderColor: 'white'}}>이 위치로 지정</button></Link>
+           <Link to="/Register-page"><button onClick={saveData} id="accept" style={{padding: '15px 50px 15px 50px', borderRadius: '15px', backgroundColor: '#06f', fontSize: 'medium', color: 'white', outline: '0', borderColor: 'white'}}>이 위치로 지정</button></Link> 
           </div>
-          
         </div>
       </div>
     </div>
@@ -169,4 +163,4 @@ function AddressPage() {
 }
 
 
-export default AddressPage;
+export default AddressPage2;

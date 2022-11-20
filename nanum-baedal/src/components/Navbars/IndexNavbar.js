@@ -112,7 +112,6 @@ function IndexNavbar({answer}) {
                   color="info"
                   href="/address"
                   id="change_adress"
-                  target="_blank"
                 >
                   <i className="now-ui-icons arrows-1_share-66 mr-1"></i>
                   <p>[주소지명]- {addressAnswer}</p>
