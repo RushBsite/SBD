@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import axios from 'axios';
 import Login from '../components/Login';
 import Main from '../components/Main';
@@ -43,6 +44,13 @@ import CompleteExamples from "./index-sections/CompleteExamples.js";
 import SignUp from "./index-sections/SignUp.js";
 import Examples from "./index-sections/Examples.js";
 import Download from "./index-sections/Download.js";
+
+import {
+  FloatingMenu,
+  MainButton,
+  ChildButton,
+  Directions
+} from 'react-floating-button-menu';
 
 
 function Index() {
@@ -97,6 +105,22 @@ function Index() {
   const [items,setItems] = useState([]);
   const [itemIndex,setitemIndex] = useState(2);
   const [itemsolo,setitemsolo] = useState('');
+  const [isOpen,setOpen] = useState(false);
+
+  const FloatingBox = styled.div`
+  position: fixed;
+  line-height: 63px;
+  bottom: 150px;
+  right: 80px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
 
   const fetchMoreData = (e) => {
     //@TODO , db에서 data 가져오기
@@ -160,9 +184,40 @@ function Index() {
           ))}
 
           </InfiniteScroll>
+          
         </div>
+        <FloatingBox>
+          <FloatingMenu
+            
+            slideSpeed={500}
+            direction={Directions.Up}
+            spacing={8}
+            isOpen={isOpen}
+          >
+            <MainButton
+              iconResting={<i class="now-ui-icons ui-1_simple-add" style={{fontSize: 20}}></i>}
+              iconActive={<i class="now-ui-icons ui-1_simple-delete" style={{fontSize: 20}}></i>}
+              background="orange"
+              onClick={() => setOpen(!isOpen)}
+              size={100}
+            />
+            <ChildButton
+              icon={<i class="now-ui-icons users_single-02"></i>}
+              background="white"
+              size={70}
+              onClick={() => console.log('First button clicked')}
+            />
+            <ChildButton
+              icon={<i>create</i>}
+              background="white"
+              size={70}
+            />
+          </FloatingMenu>
+        </FloatingBox>
+        
         <DarkFooter />
       </div>
+      
     </>
   );
 }
