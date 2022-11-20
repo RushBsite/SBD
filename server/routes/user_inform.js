@@ -15,7 +15,6 @@ router.get('/register', (req, res) => {
     res.send({datas: 'data'})
 });
 
-
 router.get('/InitIndex', (req,res) => {
     bulletinIndex = 1;
 });
@@ -36,6 +35,23 @@ router.get('/indexbulletin', (req, res) => {
 
 });
 
+router.post('/formsubmit', (req, res) => {
+    const user_id = req.query.user_id
+    const market = req.query.market
+    const content = req.query.content
+    const sql1 = 'insert into party(owner, market, content) values(?,?,?);'
+
+    params = [user_id, market, content]
+    db.query(sql1, params, (err) => {
+        if(!err){
+            res.send('formsubmit ok')
+        } else {
+            res.send("sql query error")
+        }
+    })
+
+});
+
 router.post('/index_defaul_address', (req, res) => {
     const user_id = req.query.user_id
     const sql1 = 'SELECT ADDRESS FROM user WHERE ID = ?;'
@@ -44,7 +60,7 @@ router.post('/index_defaul_address', (req, res) => {
         if(!err){
             res.send(data[0])
         } else {
-            res.send("sql query errer")
+            res.send("sql query error")
         }
     })
 });
@@ -109,7 +125,7 @@ router.post('/onRegister', (req,res) => {
     var params = [user_id, user_pw, user_email, user_birth, user_address]
     db.query(sql1, params, (err) => {
         if(!err){
-            res.send('register ok')
+            res.send(true)
         } else {
             res.send(err)
         }

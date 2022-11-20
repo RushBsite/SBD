@@ -29,10 +29,10 @@ import { func } from "prop-types";
 function RegiPage(props)
 {
     //const [check, setCheck] = React.useState(false);
-    const [inputId, setInputId] = React.useState(false);
-    const [inputPw, setInputPw] = React.useState(false);
-    const [inputEmail, setInputEmail] = React.useState(false);
-    const [inputBirth, setInputBirth] = React.useState(false);
+    const [inputId, setInputId] = React.useState('');
+    const [inputPw, setInputPw] = React.useState('');
+    const [inputEmail, setInputEmail] = React.useState('');
+    const [inputBirth, setInputBirth] = React.useState('');
     const [inputAddress, setInputAddress] = React.useState('주소지명');
 
     const initData = () =>{
@@ -40,16 +40,20 @@ function RegiPage(props)
     }
 
     const handleInputId = (e) => {
-        setInputId(e.target.value)
+      sessionStorage.setItem('inputId',e.target.value)
+      setInputId(e.target.value)
     }
     const handleInputPw = (e) => {
-        setInputPw(e.target.value)
+      sessionStorage.setItem('inputPw',e.target.value)
+      setInputPw(e.target.value)
     }
     const handleInputEmail = (e) => {
-        setInputEmail(e.target.value)
+      sessionStorage.setItem('inputEmail',e.target.value)
+      setInputEmail(e.target.value)
     }
     const handleInputBirth = (e) => {
-        setInputBirth(e.target.value)
+      sessionStorage.setItem('inputBirth',e.target.value)
+      setInputBirth(e.target.value)
     }
     const handleInputAddress = (e) => {
         setInputAddress(e.target.value)
@@ -69,13 +73,13 @@ function RegiPage(props)
           }
       })
       .then(res => {
-        console.log(res)
-        if(res !== 'register ok'){
-            alert('회원가입에 실패했습니다. 올바른 정보를 입력해 주십시오.')
-            //document.location.href = '/register-page'
+        console.log(res.data)
+        if(res.data == true){
+          alert('회원가입이 완료되었습니다. 로그인 페이지에서 로그인해 주십시오.')
+          document.location.href = '/login-page'
         } else {
-            alert('회원가입이 완료되었습니다. 로그인 페이지에서 로그인해 주십시오.')
-            //document.location.href = '/login-page'
+          alert('회원가입에 실패했습니다. 올바른 정보를 입력해 주십시오.')
+          document.location.href = '/register-page'
         }
       })
       .catch()
@@ -88,7 +92,17 @@ function RegiPage(props)
         setInputAddress(window.localStorage.getItem("userAddress"))
       }
       axios.get('http://localhost:3001/user_inform/register')
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        setInputId(sessionStorage.getItem('inputId'));
+        setInputPw(sessionStorage.getItem('inputPw'));
+        setInputEmail(sessionStorage.getItem('inputEmail'));
+        setInputBirth(sessionStorage.getItem('inputBirth'));
+        console.log(inputId);
+        console.log(inputPw);
+        console.log(inputEmail);
+        console.log(inputBirth);
+      })
       .catch()
       document.body.classList.add("register-page");
       document.body.classList.add("sidebar-collapse");
@@ -145,7 +159,8 @@ function RegiPage(props)
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="아이디"
+                          placeholder={'아이디'}
+                          value={inputId}
                           type="text"
                           onChange={handleInputId}
                         ></Input>
@@ -163,7 +178,8 @@ function RegiPage(props)
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="비밀번호"
+                          placeholder={'비밀번호'}
+                          value={inputPw}
                           type="text"
                           onChange={handleInputPw}
                         ></Input>
@@ -181,7 +197,8 @@ function RegiPage(props)
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="E-mail"
+                          placeholder={'E-Mail'}
+                          value={inputEmail}
                           type="text"
                           onChange={handleInputEmail}
                         ></Input>
@@ -199,7 +216,8 @@ function RegiPage(props)
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="Birthday"
+                          placeholder={'생년월일'}
+                          value={inputBirth}
                           type="text"
                           onChange={handleInputBirth}
                         ></Input>

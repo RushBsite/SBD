@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 import { FormGroup, Label, Input, FormText } from "reactstrap";
 
 function Form() {
+    const [market, setmarket] = useState('');
+    const [delivery_place, setmdelivery_place] = useState('');
+    const [content, setcontent] = useState('');
+
+    const handlemarket = (e) => {
+        setmarket(e.target.value)
+    }
+    const handlecontent = (e) => {
+        setcontent(e.target.value)
+    }
+
+    const Formsubmit = () => {
+        axios.post('http://localhost:3001/user_inform/formsubmit', null, {
+            params: {
+                'user_id': sessionStorage.getItem('user_id'),
+                'market': market,
+                'content': content
+            }
+        })
+        .then(res => console.log(res))
+        .catch()
+
+    }
+
+
+
     return (
     <>
 
@@ -12,7 +39,7 @@ function Form() {
             
             <div style={{marginTop: '20px'}}>
                 <label for="shopName">업체명</label>
-                <input type="text" class="form-control" id="shopNameSearch" placeholder="업체명 입력하기"></input>
+                <input type="text" onChange={handlemarket} class="form-control" id="shopNameSearch" placeholder="업체명 입력하기"></input>
             </div>
 
             <div style={{marginTop: '20px'}}>
@@ -28,6 +55,7 @@ function Form() {
                         id="GroupText"
                         name="text"
                         type="textarea"
+                        onChange={handlecontent}
                     />
                 </FormGroup>
 
@@ -54,7 +82,7 @@ function Form() {
                     </FormText>
                 </FormGroup>
 
-        <button type="submit" class="btn btn-info" style={{marginTop: '50px'}}>접수하기</button>
+        <button type="submit" onClick={Formsubmit} class="btn btn-info" style={{marginTop: '50px'}}>접수하기</button>
 
         </div>
     </form>
