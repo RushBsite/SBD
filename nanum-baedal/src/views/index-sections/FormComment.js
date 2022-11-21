@@ -2,24 +2,32 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { FormGroup, Label, Input, FormText, Card, CardTitle, CardImg, CardImgOverlay, CardText } from "reactstrap";
 
-function FormComment() {
-    const [market, setmarket] = useState('');
-    const [delivery_place, setmdelivery_place] = useState('');
+function FormComment(props) {
+    const formID = props.formID
+    const [menu, setmenu] = useState('');
+    const [price, setprice] = useState('');
     const [content, setcontent] = useState('');
+    
+    const [comment, setcomment] = useState([]);
 
-    const handlemarket = (e) => {
-        setmarket(e.target.value)
+    const handlemenu = (e) => {
+        setmenu(e.target.value)
+    }
+    const handleprice = (e) => {
+        setprice(e.target.value)
     }
     const handlecontent = (e) => {
         setcontent(e.target.value)
     }
 
     const Formsubmit = () => {
-        axios.post('http://localhost:3001/user_inform/formsubmit', null, {
+        axios.post('http://localhost:3001/user_inform/commentsubmit', null, {
             params: {
                 'user_id': sessionStorage.getItem('user_id'),
-                'market': market,
-                'content': content
+                'menu': menu,
+                'price': price,
+                'content': content,
+                'partyID': formID
             }
         })
         .then(res => console.log(res))
@@ -28,6 +36,21 @@ function FormComment() {
     }
 
 
+    React.useEffect(() => {
+        axios.post('http://localhost:3001/user_inform/commentreturn', null, {
+            params: {'form_id': formID}
+        })
+        .then(res =>{
+            console.log(res.data);
+            for(var i=0; i<res.data.length; i++){
+                console.log(res.data[i])
+                setcomment([...comment], res.data[i])
+            }
+            console.log(comment)
+        })
+        .catch()
+
+    },[]);
 
     return (
     <>
@@ -59,12 +82,12 @@ function FormComment() {
 
             <div style={{marginTop: '20px'}}>
                 <label for="myMenu">메뉴명</label>
-                <input type="text" onChange={handlemarket} class="form-control" id="menuName" placeholder="메뉴명 입력하기"></input>
+                <input type="text" onChange={handlemenu} class="form-control" id="menuName" placeholder="메뉴명 입력하기"></input>
             </div>
 
             <div style={{marginTop: '20px'}}>
                 <label for="menuPrice">가격</label>
-                <input type="text" class="form-control" id="menuPrice" placeholder="주문 메뉴 가격 입력하기"></input>
+                <input type="text" onChange={handleprice} class="form-control" id="menuPrice" placeholder="주문 메뉴 가격 입력하기"></input>
             </div>
 
                 <FormGroup style={{marginTop: '20px'}}>

@@ -4,7 +4,6 @@ import { FormGroup, Label, Input, FormText } from "reactstrap";
 
 function Form() {
     const [market, setmarket] = useState('');
-    const [delivery_place, setmdelivery_place] = useState('');
     const [content, setcontent] = useState('');
 
     const handlemarket = (e) => {
