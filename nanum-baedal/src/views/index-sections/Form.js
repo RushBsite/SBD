@@ -49,7 +49,7 @@ function Form() {
     <>
 
     <form>
-        <div class="form-group" style={{marginTop: '100px', width: '500px'}}>
+        <div class="form-group" style={{marginTop: '100px', width: '500px', paddingLeft: '15px', paddingRight: '15px'}}>
 
 
 

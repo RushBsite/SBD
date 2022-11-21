@@ -20,7 +20,6 @@ router.get('/InitIndex', (req,res) => {
 });
 
 router.get('/indexbulletin', (req, res) => {
-	// 임시로 값을 넣어 주었다.
     const sql1 = 'SELECT * FROM party where ID = ?'
     //console.log(bulletinIndex);
     db.query(sql1, bulletinIndex, (err, data) => {
@@ -35,6 +34,21 @@ router.get('/indexbulletin', (req, res) => {
 
 });
 
+router.post('/commentreturn', (req,res) => {
+    const form_id = req.query.form_id
+    const sql1 = 'select * from comment where partyID = ?;'
+    
+    db.query(sql1,form_id, (err, data) => {
+        if(!err){
+            console.log('comment returned')
+            res.send(data)
+        } else {
+            res.send("sql query error")
+        }
+    })
+
+});
+
 router.post('/formsubmit', (req, res) => {
     const user_id = req.query.user_id
     const market = req.query.market
@@ -44,8 +58,31 @@ router.post('/formsubmit', (req, res) => {
     params = [user_id, market, content]
     db.query(sql1, params, (err) => {
         if(!err){
+            console.log('formsubmit')
             res.send('formsubmit ok')
         } else {
+            console.log(err)
+            res.send("sql query error")
+        }
+    })
+
+});
+
+router.post('/commentsubmit', (req,res) => {
+    const user_id = req.query.user_id
+    const content = req.query.content
+    const menu = req.query.menu
+    const price = req.query.price
+    const partyID = req.query.partyID
+    const sql1 = 'insert into comment(user, content, menu, price, partyID) values(?,?,?,?,?);'
+
+    params = [user_id, content, menu, price, partyID]
+    db.query(sql1,params, (err)=>{
+        if(!err){
+            console.log('comment submit ok')
+            res.send('comment submit ok')
+        } else {
+            console.log('comment submit error')
             res.send("sql query error")
         }
     })
