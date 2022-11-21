@@ -187,8 +187,8 @@ function Index() {
             isOpen={isOpen}
           >
             <MainButton
-              iconResting={<i class="now-ui-icons ui-1_simple-add" style={{fontSize: 30}}></i>}
-              iconActive={<i class="now-ui-icons ui-1_simple-delete" style={{fontSize: 30}}></i>}
+              iconResting={<img className="main_icon" src={require("assets/img/main_icon.png")}></img>}
+              iconActive={<img className="main_icon_click" src={require("assets/img/menu_icon.png")}></img>}
               background="#2ca8ff"
               onClick={() => setOpen(!isOpen)}
               size={100}
@@ -204,8 +204,12 @@ function Index() {
               onClick={() => console.log('First button clicked')}
             />
             <ChildButton
-              icon={<i>create</i>}
-              background="white"
+              icon={<img
+                alt="..."
+                className="post"
+                src={require("assets/img/post_icon.png")}
+              ></img>}
+              background="#ffb236"
               size={70}
               onClick={() => setModal1(true)}
             >
