@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { FormGroup, Label, Input, FormText } from "reactstrap";
+import {
+    Button,
+    
+  } from "reactstrap";
 
 function Form() {
     const [market, setmarket] = useState('');
+    const [inputAddress, setInputAddress] = useState('주소지명');
     const [delivery_place, setmdelivery_place] = useState('');
     const [content, setcontent] = useState('');
+
+    const initData = () =>{
+        window.localStorage.setItem("AddressChoice", '주소지명');
+    }
 
     const handlemarket = (e) => {
         setmarket(e.target.value)
     }
     const handlecontent = (e) => {
         setcontent(e.target.value)
+    }
+    const onclick = (e) => {
+        document.location.assign('/regi-address2')
     }
 
     const Formsubmit = () => {
@@ -26,9 +38,13 @@ function Form() {
         .catch()
 
     }
-
-
-
+    React.useEffect(() => {
+        if(window.localStorage.getItem("AddressChoice")==null){
+          initData()
+        }else{
+          setInputAddress(window.localStorage.getItem("AddressChoice"))
+        }
+      }, []);
     return (
     <>
 
@@ -58,7 +74,18 @@ function Form() {
             </div>
 
             <div style={{marginTop: '20px'}}>
-                <label for="myMenu">배달장소 </label>
+                <label for="myMenu">배달장소 -
+                {inputAddress}
+                {/*
+                    window.localStorage.getItem("AddressChoice")==null ?
+                    initData() : setInputAddress(window.localStorage.getItem("AddressChoice"))
+                      
+                */}
+                    <Button color="success"
+                          onClick={onclick}
+                      >
+                        주소지정하기</Button>
+                 </label>
                 <input type="text" class="form-control" id="내주문 메뉴" placeholder="주문 메뉴 입력하기"></input>
             </div>
 

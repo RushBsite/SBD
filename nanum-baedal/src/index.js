@@ -33,6 +33,7 @@ import ProfilePage from "views/examples/ProfilePage.js";
 import AddressPage from "views/examples/AddressPage";
 import RegisterPage from "views/examples/RegiPage.js";
 import AddressPage2 from "views/examples/AddressPage2";
+import AddressPage3 from "views/examples/AddressPage3";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -67,6 +68,10 @@ root.render(
         <Route
           path="/regi-address"
           render={(props) => <AddressPage2 {...props} />}
+        />
+        <Route
+          path="/regi-address2"
+          render={(props) => <AddressPage3 {...props} />}
         />
         <Redirect to="/landing-page" />
         <Redirect from="/" to="/landing-page" />
