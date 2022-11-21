@@ -21,7 +21,7 @@ function FormComment(props) {
     }
 
     const Formsubmit = () => {
-        axios.post('http://10.0.1.132:30535/user_inform/commentsubmit', null, {
+        axios.post('http://10.104.156.38:3001/user_inform/commentsubmit', null, {
             params: {
                 'user_id': sessionStorage.getItem('user_id'),
                 'menu': menu,
@@ -37,7 +37,7 @@ function FormComment(props) {
 
 
     React.useEffect(() => {
-        axios.post('http://10.0.1.132:30535/user_inform/commentreturn', null, {
+        axios.post('http://10.104.156.38:3001/user_inform/commentreturn', null, {
             params: {'form_id': formID}
         })
         .then(res =>{

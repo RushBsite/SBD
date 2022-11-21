@@ -42,7 +42,7 @@ function LoginPage() {
       //console.log('ID : ', inputId)
       //console.log('PW : ', inputPw)
 
-      axios.post('http://10.0.1.132:30535/user_inform/onLogin', null, {
+      axios.post('http://10.104.156.38:3001/user_inform/onLogin', null, {
           params: {
               'user_id': inputId,
               'user_pw': inputPw
@@ -80,7 +80,7 @@ function LoginPage() {
 
   
   React.useEffect(() => {
-    axios.get('http://10.0.1.132:30535/user_inform/login')
+    axios.get('http://10.104.156.38:3001/user_inform/login')
     .then(res => console.log(res))
     .catch()
     document.body.classList.add("login-page");

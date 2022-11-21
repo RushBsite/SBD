@@ -78,7 +78,7 @@ function AddressPage() {
 
   const onAddressSave = (e) => {
     console.log(getJAddress)
-    axios.post('http://10.0.1.132:30535/user_inform/address_save', null, {
+    axios.post('http://10.104.156.38:3001/user_inform/address_save', null, {
         params: {
           'user_id': sessionStorage.getItem('user_id'),
           'user_address': getJAddress
