@@ -106,7 +106,7 @@ function Index() {
     };
   }, []);
 
-  const [items,setItems] = useState([1,1,1]);
+  const [items,setItems] = useState([]);
   const [itemIndex,setitemIndex] = useState(2);
   const [isOpen,setOpen] = useState(false);
   const [modal1, setModal1] = React.useState(false);
