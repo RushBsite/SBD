@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 import Login from '../components/Login';
 import Main from '../components/Main';
+import url from '../url';
+
 import { 
   Card, 
   Button, 
@@ -35,7 +37,8 @@ import BasicElements from "./index-sections/BasicElements.js";
 import Navbars from "./index-sections/Navbars.js";
 import Tabs from "./index-sections/Tabs.js";
 import ModalText from "./index-sections/Modal.js";
-import Form from "./index-sections/Form";
+import Form from "./index-sections/Form.js";
+import FormComment from "./index-sections/FormComment.js";
 import Pagination from "./index-sections/Pagination.js";
 import Notifications from "./index-sections/Notifications.js";
 import Typography from "./index-sections/Typography.js";
@@ -84,14 +87,14 @@ function Index() {
 
     //index 페이지 시작 시 설정할 parameter
     //게시글을 query로 불러올때 필요한 서버쪽의 변수를 초기화시키기 위함
-    axios.get('http://localhost:3001/user_inform/InitIndex')
+    axios.get(url + '/user_inform/InitIndex')
 
-    axios.post('http://localhost:3001/user_inform/index_defaul_address', null, {
+    axios.post(url + '/user_inform/index_defaul_address', null, {
       params: {'user_id' : sessionStorage.getItem('user_id')}
     })
     .then(res => {
       setAddress(res.data.ADDRESS)
-      console.log(address)
+      //console.log(address)
     })
     .catch()
 
@@ -118,19 +121,20 @@ function Index() {
   },[setModal1])
 
 
-  const [items,setItems] = useState([1,1,1]);
+  const [items,setItems] = useState([]);
   const [itemIndex,setitemIndex] = useState(2);
   const [itemsolo,setitemsolo] = useState('');
+  const [modal2, setModal2] = React.useState(false);
+  const [bulletin_ID, setbulletin_ID] = React.useState(0);
 
   
   const fetchMoreData = (e) => {
     //@TODO , db에서 data 가져오기
-    axios.get('http://localhost:3001/user_inform/indexbulletin')
+    axios.get(url + '/user_inform/indexbulletin')
     .then(res => {
       //console.log(res.data)
       if(res.data !== ""){
         setItems([...items, res.data]);
-        setitemsolo(res.data);
         setitemIndex(itemIndex + 1);
       } else {
         setisMoreBulltin(false)
@@ -144,6 +148,7 @@ function Index() {
 
   };
 
+
   return (
     <>
       <IndexNavbar answer={address}/>
@@ -153,6 +158,11 @@ function Index() {
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
 
           <Form></Form>
+        </Modal>
+        <Modal isOpen={modal2} toggle={() => {
+          setModal2(false)
+          }}>
+          <FormComment formID = {bulletin_ID}></FormComment>
         </Modal>
         <InfiniteScroll
           dataLength={items.length}
@@ -170,11 +180,15 @@ function Index() {
                           <CardImg style={{flexBasis: 'auto', height: '400px', width: 'auto', objectFit: 'cover'}} src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000370/img/basic/a0000370_main.jpg?20201002142956&q=80&rw=750&rh=536" alt="Card image cap" />
                           <CardBody>
                             <CardTitle>작성자: {i.owner} 작성시간: {i.datetime}</CardTitle>
-                            <CardTitle>매장: {i.pickupAddress}</CardTitle>
+                            <CardTitle>매장: {i.market}</CardTitle>
                             <CardTitle>배달 주소: {i.pickupAddress}</CardTitle>
                             <CardSubtitle>현재 모집 인원수: {i.members}</CardSubtitle>
                             <CardText></CardText>
-                            <Button color="info">공동모집글 참여하기</Button>
+                            <Button color="info" onClick={() => {
+                              setModal2(true)
+                              setbulletin_ID(i.ID)
+                            }}>공동모집글 참여하기</Button>
+
                           </CardBody>
                         </Card>
                     </Row>

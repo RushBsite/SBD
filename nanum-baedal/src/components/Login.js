@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import url from '../url';
  
 function Login() {
     const [inputId, setInputId] = useState('')
@@ -19,7 +20,7 @@ function Login() {
         console.log('click login')
         console.log('ID : ', inputId)
         console.log('PW : ', inputPw)
-        axios.post('http://localhost:3001/user_inform/onLogin', null, {
+        axios.post(url + '1/user_inform/onLogin', null, {
             params: {
                 'user_id': inputId,
                 'user_pw': inputPw
@@ -50,7 +51,7 @@ function Login() {
  
 	// 페이지 렌더링 후 가장 처음 호출되는 함수
     useEffect(() => {
-        axios.get('http://localhost:3001/user_inform/login')
+        axios.get(url + '/user_inform/login')
         .then(res => console.log(res))
         .catch()
     },

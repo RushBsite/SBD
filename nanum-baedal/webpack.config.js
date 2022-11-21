@@ -12,7 +12,7 @@ module.exports = {
     proxy: {
       '/user_inform': {
       	// 서버 포트는 3001
-        target: 'http://localhost:3001/',
+        target: 'http://10.104.156.38:3001/',
         changeOrigin: true,
       }
     }

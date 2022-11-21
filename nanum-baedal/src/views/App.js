@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import url from '../url';
 
-const Server_URL = 'http://localhost:3001/api/todo';
+const Server_URL = url + '/api/todo';
 function App(){
     const [todoList, setTodoList] = useState(null);
 
@@ -20,7 +21,7 @@ function App(){
         const done = e.target.done.checked;
         await axios.post(Server_URL, { text, done });
         fetchData();
-        // fetch('http://localhost:3001/api/todo', {
+        // fetch(url + '/api/todo', {
         //     method: 'POST',
         //     headers:{
         //         'Content-Type': 'application/json',

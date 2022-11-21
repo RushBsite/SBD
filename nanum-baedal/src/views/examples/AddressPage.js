@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import url from '../../url';
 
 class Head extends React.Component {
   render() {
@@ -78,7 +79,7 @@ function AddressPage() {
 
   const onAddressSave = (e) => {
     console.log(getJAddress)
-    axios.post('http://localhost:3001/user_inform/address_save', null, {
+    axios.post(url + '/user_inform/address_save', null, {
         params: {
           'user_id': sessionStorage.getItem('user_id'),
           'user_address': getJAddress

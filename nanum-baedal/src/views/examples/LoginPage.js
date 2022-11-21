@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import url from '../../url';
 // reactstrap components
 import {
   Button,
@@ -42,7 +43,7 @@ function LoginPage() {
       //console.log('ID : ', inputId)
       //console.log('PW : ', inputPw)
 
-      axios.post('http://localhost:3001/user_inform/onLogin', null, {
+      axios.post(url + '/user_inform/onLogin', null, {
           params: {
               'user_id': inputId,
               'user_pw': inputPw
@@ -80,7 +81,7 @@ function LoginPage() {
 
   
   React.useEffect(() => {
-    axios.get('http://localhost:3001/user_inform/login')
+    axios.get(url + '/user_inform/login')
     .then(res => console.log(res))
     .catch()
     document.body.classList.add("login-page");
