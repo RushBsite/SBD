@@ -27,7 +27,7 @@ function Form() {
     }
 
     const Formsubmit = () => {
-        axios.post('http://localhost:3001/user_inform/formsubmit', null, {
+        axios.post('http://10.0.1.132:30535/user_inform/formsubmit', null, {
             params: {
                 'user_id': sessionStorage.getItem('user_id'),
                 'market': market,

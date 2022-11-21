@@ -63,7 +63,7 @@ function RegiPage(props)
     }
 
     const onClickRegister = () => {
-        axios.post('http://localhost:3001/user_inform/onRegister', null, {
+        axios.post('http://10.0.1.132:30535/user_inform/onRegister', null, {
           params: {
               'user_id': inputId,
               'user_pw': inputPw,
@@ -91,7 +91,7 @@ function RegiPage(props)
       }else{
         setInputAddress(window.localStorage.getItem("userAddress"))
       }
-      axios.get('http://localhost:3001/user_inform/register')
+      axios.get('http://10.0.1.132:30535/user_inform/register')
       .then(res => {
         console.log(res)
         setInputId(sessionStorage.getItem('inputId'));
