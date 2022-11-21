@@ -35,7 +35,8 @@ import BasicElements from "./index-sections/BasicElements.js";
 import Navbars from "./index-sections/Navbars.js";
 import Tabs from "./index-sections/Tabs.js";
 import ModalText from "./index-sections/Modal.js";
-import Form from "./index-sections/Form";
+import Form from "./index-sections/Form.js";
+import FormComment from "./index-sections/FormComment.js";
 import Pagination from "./index-sections/Pagination.js";
 import Notifications from "./index-sections/Notifications.js";
 import Typography from "./index-sections/Typography.js";
@@ -144,7 +145,7 @@ function Index() {
           <Form></Form>
         </Modal>
         <Modal isOpen={modal2} toggle={() => setModal2(false)}>
-          <Form></Form>
+          <FormComment></FormComment>
         </Modal>
         <InfiniteScroll
           dataLength={items.length}
