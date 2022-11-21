@@ -28,6 +28,7 @@ function AddressPage3({setModal}) {
   const saveData = () => {
     const userObj = getJAddress;
     window.localStorage.setItem("AddressChoice", JSON.stringify(userObj));
+    window.localStorage.setItem("ModalOpen", true);
     console.log(userObj)
   };
 

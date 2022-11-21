@@ -7,6 +7,7 @@ import {
   } from "reactstrap";
 
 function Form() {
+    
     const [market, setmarket] = useState('');
     const [inputAddress, setInputAddress] = useState('주소지명');
     const [delivery_place, setmdelivery_place] = useState('');
@@ -36,7 +37,7 @@ function Form() {
         })
         .then(res => console.log(res))
         .catch()
-
+        window.localStorage.setItem("ModalOpen", false)
     }
     React.useEffect(() => {
         if(window.localStorage.getItem("AddressChoice")==null){
