@@ -40,7 +40,7 @@ function IndexHeader() {
               src={require("assets/img/now-logo.png")}
             ></img>
             <h1 className="h1-seo">나눔의 민족</h1>
-            <h3>나눌 수록 배달팁은 줄어드니까</h3>
+            <h3>나눌수록 배달팁은 줄어드니까</h3>
           </div>
         </Container>
       </div>

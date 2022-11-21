@@ -41,7 +41,8 @@ function LandingPage() {
               <Col className="ml-auto mr-auto text-center" md="8">
                 <h2 className="title">나눔의 민족이란?</h2>
                 <h5 className="description">
-                  설명설명설명설명설명설명설명설명설명설명설명설명
+                  우리 동네 공동배달 플랫폼 <span style={{color: '#4bb5ff', fontWeight: 'bold'}}>
+                    "나눔의 민족을"</span> 소개합니다.
                 </h5>
               </Col>
             </Row>
@@ -53,22 +54,20 @@ function LandingPage() {
                     className="image-container image-left"
                     style={{
                       backgroundImage:
-                        "url(" + require("assets/img/login.jpg") + ")"
+                        "url(" + require("assets/img/landingImage1.jpg") + ")"
                     }}
                   >
                     <p className="blockquote blockquote-info">
-                      "Over the span of the satellite record, Arctic sea ice has
-                      been declining significantly, while sea ice in the
-                      Antarctichas increased very slightly" <br></br>
+                      "나눔의 민족은 배달비가 너무 비싸다는 작은 아이디어에서 시작했습니다." <br></br>
                       <br></br>
-                      <small>-NOAA</small>
+                      <small>-Goorm-team5</small>
                     </p>
                   </div>
                   <div
                     className="image-container"
                     style={{
                       backgroundImage:
-                        "url(" + require("assets/img/bg3.jpg") + ")"
+                        "url(" + require("assets/img/landingImage3.jpg") + ")"
                     }}
                   ></div>
                 </Col>
@@ -77,41 +76,28 @@ function LandingPage() {
                     className="image-container image-right"
                     style={{
                       backgroundImage:
-                        "url(" + require("assets/img/bg1.jpg") + ")"
+                        "url(" + require("assets/img/landingImage2.jpg") + ")"
                     }}
                   ></div>
                   <h3>
-                    So what does the new record for the lowest level of winter
-                    ice actually mean
+                    "공동배달이라는 새로운 공유 문화"
                   </h3>
                   <p>
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens with climate change. Even if the
-                    Arctic continues to be one of the fastest-warming regions of
-                    the world, it will always be plunged into bitterly cold
-                    polar dark every winter. And year-by-year, for all kinds of
-                    natural reasons, there’s huge variety of the state of the
-                    ice.
+                    나눔의 민족은 배달이라는 서비스를 이웃과 공유합니다.
+                    공동 배달을 통해 이웃과 함께 주문하고 배달료를 아껴보세요.
+                    배달음식은 먹고 싶은데 배달료 때문에 망설이는 당신을 위한
+                    단 하나의 서비스, <span style={{fontWeight: 'bold'}}>'나눔의 민족'</span>입니다.
+                    
                   </p>
                   <p>
-                    For a start, it does not automatically follow that a record
-                    amount of ice will melt this summer. More important for
-                    determining the size of the annual thaw is the state of the
-                    weather as the midnight sun approaches and temperatures
-                    rise. But over the more than 30 years of satellite records,
-                    scientists have observed a clear pattern of decline,
-                    decade-by-decade.
+                    공동 배달이라는 공유문화는 경제적으로도, 환경적으로도 우리의 미래를 생각합니다.
+                    한 아파트에, 한 동네에 하루에도 수십 번 왕복하는 현재의 배달
                   </p>
                   <p>
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens with climate change. Even if the
-                    Arctic continues to be one of the fastest-warming regions of
-                    the world, it will always be plunged into bitterly cold
-                    polar dark every winter. And year-by-year, for all kinds of
-                    natural reasons, there’s huge variety of the state of the
-                    ice.
+                    이젠 한 아파트에 한 건으로, 한 동네에 한 건으로 우리의 돈, 시간 그리고 환경을 아낄 수 있습니다.
+                  </p>
+                  <p>
+                    당신도 함께 해보세요, 나눔의 민족.
                   </p>
                 </Col>
               </Row>

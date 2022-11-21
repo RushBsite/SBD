@@ -37,7 +37,7 @@ function FormComment() {
 
             <Card inverse>
                 <CardImg width="100%" src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000370/img/basic/a0000370_main.jpg?20201002142956&q=80&rw=750&rh=536" alt="Card image cap" />
-                    <CardTitle style={{color: 'black', fontWeight: 'bold', marginTop: '20px', fontSize: '30px', marginLeft: '170px', marginRight: 'auto'}}>
+                    <CardTitle style={{color: 'black', fontWeight: 'bold', marginTop: '20px', fontSize: '30px', marginLeft: '160px', marginRight: 'auto'}}>
                         호랑이 스시</CardTitle>
                     <CardText style={{color: 'black', marginLeft: '15px', marginRight: '15px', display: 'flex', alignContent: 'center'}}>
                         호랑이 스시는 당일 들어온 신선한 횟감으로 손님을 대접하는 자부심있는 일식집입니다!! 어흥 🐯
