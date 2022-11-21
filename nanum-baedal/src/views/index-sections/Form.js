@@ -37,7 +37,8 @@ function Form() {
         })
         .then(res => console.log(res))
         .catch()
-        window.localStorage.setItem("ModalOpen", false)
+        window.localStorage.removeItem("ModalOpen");
+
     }
     React.useEffect(() => {
         if(window.localStorage.getItem("AddressChoice")==null){
@@ -46,6 +47,7 @@ function Form() {
           setInputAddress(window.localStorage.getItem("AddressChoice"))
         }
       }, []);
+      
     return (
     <>
 
@@ -125,7 +127,7 @@ function Form() {
                     </FormText>
                 </FormGroup>
 
-        <button type="submit" onClick={Formsubmit} class="btn btn-info" style={{marginTop: '50px'}}>접수하기</button>
+        <button type="submit" onClick={Formsubmit} class="btn btn-info" style={{marginTop: '50px'}} >접수하기</button>
 
         </div>
     </form>
