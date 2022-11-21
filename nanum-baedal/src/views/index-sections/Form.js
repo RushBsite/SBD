@@ -43,7 +43,7 @@ function Form() {
             </div>
 
             <div style={{marginTop: '20px'}}>
-                <label for="myMenu">배달장소 - api 연결필요</label>
+                <label for="myMenu">배달장소 </label>
                 <input type="text" class="form-control" id="내주문 메뉴" placeholder="주문 메뉴 입력하기"></input>
             </div>
 
