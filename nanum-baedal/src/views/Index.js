@@ -110,6 +110,7 @@ function Index() {
   const [itemsolo,setitemsolo] = useState('');
   const [isOpen,setOpen] = useState(false);
   const [modal1, setModal1] = React.useState(false);
+  const [modal2, setModal2] = React.useState(false);
 
   
   const fetchMoreData = (e) => {
@@ -142,6 +143,9 @@ function Index() {
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <Form></Form>
         </Modal>
+        <Modal isOpen={modal2} toggle={() => setModal2(false)}>
+          <Form></Form>
+        </Modal>
         <InfiniteScroll
           dataLength={items.length}
           next={fetchMoreData}
@@ -162,7 +166,7 @@ function Index() {
                             <CardTitle>배달 주소: {i.pickupAddress}</CardTitle>
                             <CardSubtitle>현재 모집 인원수: {i.members}</CardSubtitle>
                             <CardText></CardText>
-                            <Button color="info">공동모집글 참여하기</Button>
+                            <Button color="info" onClick={() => setModal2(true)}>공동모집글 참여하기</Button>
                           </CardBody>
                         </Card>
                     </Row>
