@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import axios from 'axios';
+import url from '../../url';
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import AddressPage2 from "./AddressPage2";
@@ -63,7 +64,7 @@ function RegiPage(props)
     }
 
     const onClickRegister = () => {
-        axios.post('http://10.104.156.38:3001/user_inform/onRegister', null, {
+        axios.post(url + '/user_inform/onRegister', null, {
           params: {
               'user_id': inputId,
               'user_pw': inputPw,
@@ -91,7 +92,7 @@ function RegiPage(props)
       }else{
         setInputAddress(window.localStorage.getItem("userAddress"))
       }
-      axios.get('http://10.104.156.38:3001/user_inform/register')
+      axios.get(url + '/user_inform/register')
       .then(res => {
         console.log(res)
         setInputId(sessionStorage.getItem('inputId'));

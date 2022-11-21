@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import url from '../../url';
 import { FormGroup, Label, Input, FormText } from "reactstrap";
 import {
     Button,
@@ -27,7 +28,7 @@ function Form() {
     }
 
     const Formsubmit = () => {
-        axios.post('http://10.104.156.38:3001/user_inform/formsubmit', null, {
+        axios.post(url + '/user_inform/formsubmit', null, {
             params: {
                 'user_id': sessionStorage.getItem('user_id'),
                 'market': market,

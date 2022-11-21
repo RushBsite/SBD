@@ -3,6 +3,8 @@ import styled from "styled-components";
 import axios, { AxiosHeaders } from 'axios';
 import Login from '../components/Login';
 import Main from '../components/Main';
+import url from '../url';
+
 import { 
   Card, 
   Button, 
@@ -83,9 +85,9 @@ function Index() {
 
     //index 페이지 시작 시 설정할 parameter
     //게시글을 query로 불러올때 필요한 서버쪽의 변수를 초기화시키기 위함
-    axios.get('http://10.104.156.38:3001/user_inform/InitIndex')
+    axios.get(url + '/user_inform/InitIndex')
 
-    axios.post('http://10.104.156.38:3001/user_inform/index_defaul_address', null, {
+    axios.post(url + '/user_inform/index_defaul_address', null, {
       params: {'user_id' : sessionStorage.getItem('user_id')}
     })
     .then(res => {
@@ -116,7 +118,7 @@ function Index() {
   
   const fetchMoreData = (e) => {
     //@TODO , db에서 data 가져오기
-    axios.get('http://10.104.156.38:3001/user_inform/indexbulletin')
+    axios.get(url + '/user_inform/indexbulletin')
     .then(res => {
       //console.log(res.data)
       if(res.data !== ""){
