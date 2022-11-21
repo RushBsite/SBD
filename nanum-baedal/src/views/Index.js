@@ -137,8 +137,8 @@ function Index() {
     <>
       <IndexNavbar answer={address}/>
       <div className="wrapper">
+      <IndexHeader></IndexHeader>
         <div className="main">
-        <IndexHeader></IndexHeader>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <Form></Form>
         </Modal>
@@ -194,7 +194,11 @@ function Index() {
               size={100}
             />
             <ChildButton
-              icon={<i class="now-ui-icons users_single-02"></i>}
+              icon={<img
+                alt="..."
+                className="user_post"
+                src={require("assets/img/user_icon.png")}
+              ></img>}
               background="#ffb236"
               size={70}
               onClick={() => console.log('First button clicked')}
