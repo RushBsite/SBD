@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { FormGroup, Label, Input, FormText, Card, CardTitle, CardImg, CardImgOverlay, CardText } from "reactstrap";
+import { FormGroup, Label, Input, FormText, border, Card, CardTitle, CardImg, CardImgOverlay, CardText } from "reactstrap";
 
 function FormComment(props) {
     const formID = props.formID
@@ -67,20 +67,27 @@ function FormComment(props) {
                         <br/><br/>
                         메뉴 확인하기 -> URL 링크 삽입
                         </CardText>
-                    <CardText>
-                        <small className="text-muted">모집글 작성 5분전</small>
+                    <CardText style={{paddingLeft:'10px'}}>
+                        <small className="text-muted">모집글 작성 - 5분전</small>
                     </CardText>
             </Card>
 
-            <div style={{marginTop: '20px'}}>
-                <label for="myMenu">현재 참여한 사람</label>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="배고픈 호랑이"></input>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="흥미로운 사자"></input>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="남은자리1"></input>
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="남은자리2"></input>
-            </div>
+            <Card border='primary' style={{ width: '29.5rem', paddingLeft: '10px', paddingBottom: '10px'}}>
+                <div style={{marginTop: '20px'}}>
+                    <label for="myMenu" style={{fontWeight: 'bold', color: 'info'}}>현재 참여한 사람</label>
+                    <span style={{color: '#4bb5ff', fontWeight: 'bold'}}> 3/4</span>
+                    <br/>
+                    <span class="badge badge-primary">배고픈 호랑이 🐯</span>
+                    <br/>
+                    <span class="badge badge-info">흥미로운 사자 🦁</span>
+                    <br/>
+                    <span class="badge badge-success">기분좋은 물고기 🐟</span>
+                    <br/>
+                    
+                </div>
+            </Card>
 
-            <div style={{marginTop: '20px'}}>
+            <div style={{marginTop: '50px'}}>
                 <label for="myMenu">메뉴명</label>
                 <input type="text" onChange={handlemenu} class="form-control" id="menuName" placeholder="메뉴명 입력하기"></input>
             </div>
