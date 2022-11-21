@@ -67,6 +67,8 @@ function Index() {
    //index 페이지 시작 시 설정할 parameter
    //게시글이 더 없다면 InfinityScroll을 정지시키기 위한 변수
    const [isMoreBulltin,setisMoreBulltin] = React.useState(true)
+   const [isOpen,setOpen] = useState(false);
+  const [modal1, setModal1] = React.useState(false);
 
    // setAnser(location.state.g)
    console.log(answer)
@@ -96,7 +98,9 @@ function Index() {
     })
     .catch()
 
-
+    //if (window.localStorage.getItem("AddressChoice")) {
+    //  setModal1(true)
+    //}
     document.body.classList.add("index-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -108,10 +112,18 @@ function Index() {
     };
   }, []);
 
+  React.useEffect(()=> {
+    if (window.localStorage.getItem("ModalOpen")) {
+      setModal1(true)
+    }
+    else{ setModal1(false)}
+
+  },[setModal1])
+
+
   const [items,setItems] = useState([]);
   const [itemIndex,setitemIndex] = useState(2);
-  const [isOpen,setOpen] = useState(false);
-  const [modal1, setModal1] = React.useState(false);
+  const [itemsolo,setitemsolo] = useState('');
   const [modal2, setModal2] = React.useState(false);
   const [bulletin_ID, setbulletin_ID] = React.useState(0);
 
@@ -144,6 +156,7 @@ function Index() {
       <IndexHeader></IndexHeader>
         <div className="main">
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
+
           <Form></Form>
         </Modal>
         <Modal isOpen={modal2} toggle={() => {
