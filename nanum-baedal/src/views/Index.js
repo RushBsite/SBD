@@ -105,7 +105,7 @@ function Index() {
     };
   }, []);
 
-  const [items,setItems] = useState([]);
+  const [items,setItems] = useState([1,1,1]);
   const [itemIndex,setitemIndex] = useState(2);
   const [itemsolo,setitemsolo] = useState('');
   const [isOpen,setOpen] = useState(false);
@@ -155,7 +155,7 @@ function Index() {
                     <Row className="ml-auto mr-auto">
                        <p className="category"></p>
                         <Card style= {{display: 'flex' ,justifyContent: 'center' ,flexBasis: 'auto', flexShrink: '1', flexGrow: '1'}}>
-                          <CardImg style={{flexBasis: 'auto', height: '400px', width: 'auto', objectFit: 'cover'}} src="https://cdnweb01.wikitree.co.kr/webdata/editor/202007/10/img_20200710134132_8741c24c.webp" alt="Card image cap" />
+                          <CardImg style={{flexBasis: 'auto', height: '400px', width: 'auto', objectFit: 'cover'}} src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000370/img/basic/a0000370_main.jpg?20201002142956&q=80&rw=750&rh=536" alt="Card image cap" />
                           <CardBody>
                             <CardTitle>작성자: {i.owner} 작성시간: {i.datetime}</CardTitle>
                             <CardTitle>매장: {i.pickupAddress}</CardTitle>
@@ -187,8 +187,8 @@ function Index() {
             isOpen={isOpen}
           >
             <MainButton
-              iconResting={<i class="now-ui-icons ui-1_simple-add" style={{fontSize: 30}}></i>}
-              iconActive={<i class="now-ui-icons ui-1_simple-delete" style={{fontSize: 30}}></i>}
+              iconResting={<img className="main_icon" src={require("assets/img/main_icon.png")}></img>}
+              iconActive={<img className="main_icon_click" src={require("assets/img/menu_icon.png")}></img>}
               background="#2ca8ff"
               onClick={() => setOpen(!isOpen)}
               size={100}
@@ -204,8 +204,12 @@ function Index() {
               onClick={() => console.log('First button clicked')}
             />
             <ChildButton
-              icon={<i>create</i>}
-              background="white"
+              icon={<img
+                alt="..."
+                className="post"
+                src={require("assets/img/post_icon.png")}
+              ></img>}
+              background="#ffb236"
               size={70}
               onClick={() => setModal1(true)}
             >

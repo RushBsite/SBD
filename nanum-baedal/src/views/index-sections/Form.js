@@ -34,8 +34,23 @@ function Form() {
 
     <form>
         <div class="form-group" style={{marginTop: '100px', width: '500px'}}>
-            <label for="title">제목</label>
-            <input type="text" class="form-control" id="titleText" aria-describedby="titleHelp" placeholder="제목 입력"></input>
+
+
+
+            <div class="form-group" style={{marginTop: '20px'}}>
+                <label for="exampleFormControlSelect1"> 주문 음식 카테고리</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>치킨</option>
+                    <option>피자</option>
+                    <option>패스트푸드</option>
+                    <option>한식</option>
+                    <option>일식</option>
+                    <option>중식</option>
+                    <option>분식</option>
+                    <option>일식</option>
+                    <option>족발/보쌈</option>
+                </select>
+            </div>
             
             <div style={{marginTop: '20px'}}>
                 <label for="shopName">업체명</label>
